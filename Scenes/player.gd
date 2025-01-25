@@ -9,6 +9,7 @@ var right_direction := Vector2(1, 0)
 
 func _process(delta):
 	$GravityInd.position = gravity_direction * 100
+	$RightInd.position = right_direction * 100
 func _physics_process(_delta):
 	if !is_on_floor():
 		if velocity.y != 500:
@@ -23,3 +24,4 @@ func _physics_process(_delta):
 	
 func set_gravity_direction(angle):
 	gravity_direction = Vector2(cos(angle + PI/2), sin(angle + PI/2)).normalized()
+	right_direction = Vector2(gravity_direction.y, -gravity_direction.x)

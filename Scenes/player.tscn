@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ccwwebfjaooye"]
+[gd_scene load_steps=9 format=3 uid="uid://ccwwebfjaooye"]
 
 [ext_resource type="Script" path="res://Scenes/player.gd" id="1_yairi"]
 
@@ -17,6 +17,12 @@ colors = PackedColorArray(0, 0, 0.803922, 1, 0, 0, 0.803922, 1)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_b6r8m"]
 gradient = SubResource("Gradient_ovcoj")
 
+[sub_resource type="Gradient" id="Gradient_6qb6x"]
+colors = PackedColorArray(0, 0, 0.803922, 1, 0, 0, 0.803922, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_08la4"]
+gradient = SubResource("Gradient_6qb6x")
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_yairi")
 speed = 300
@@ -34,3 +40,8 @@ shape = SubResource("RectangleShape2D_brcr0")
 position = Vector2(0, 28)
 scale = Vector2(0.148438, 0.15625)
 texture = SubResource("GradientTexture2D_b6r8m")
+
+[node name="RightInd" type="Sprite2D" parent="."]
+position = Vector2(21, -1.69407e-21)
+scale = Vector2(0.179687, 0.171875)
+texture = SubResource("GradientTexture2D_08la4")
