@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://xiylpl7wm3ey"]
+[gd_scene load_steps=10 format=3 uid="uid://xiylpl7wm3ey"]
 
 [ext_resource type="Script" path="res://Scenes/spaceship.gd" id="1_eua8s"]
 [ext_resource type="PackedScene" uid="uid://ccwwebfjaooye" path="res://Scenes/player.tscn" id="1_xjli7"]
 [ext_resource type="PackedScene" uid="uid://pp88115dmrs" path="res://Scenes/Systems/gravity_system.tscn" id="2_tt4xs"]
 [ext_resource type="PackedScene" uid="uid://b7g0nwgl1bn0p" path="res://Scenes/Systems/oxygen_system.tscn" id="3_hoyif"]
+[ext_resource type="PackedScene" uid="uid://coagv5heiiek5" path="res://Scenes/Systems/temperature_system.tscn" id="4_1apss"]
+[ext_resource type="PackedScene" uid="uid://bp3gnj0jpnmdh" path="res://Scenes/Systems/lights_system.tscn" id="5_1epu1"]
 
 [sub_resource type="Gradient" id="Gradient_j3380"]
 colors = PackedColorArray(0, 0.764706, 0, 1, 0, 0.764706, 0, 1)
@@ -28,7 +30,11 @@ position = Vector2(779, 491)
 
 [node name="OxygenSystem" parent="RotationalAxis/Systems" instance=ExtResource("3_hoyif")]
 position = Vector2(641, 474)
-power_loss_rate = 50.0
+
+[node name="TemperatureSystem" parent="RotationalAxis/Systems" instance=ExtResource("4_1apss")]
+position = Vector2(248, 473)
+
+[node name="LightsSystem" parent="RotationalAxis/Systems" instance=ExtResource("5_1epu1")]
 
 [node name="Platform" type="StaticBody2D" parent="RotationalAxis"]
 position = Vector2(0, 246)

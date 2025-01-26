@@ -45,12 +45,12 @@ label_settings = SubResource("LabelSettings_qdhcp")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="OxygenRepair" type="Label" parent="DeathWarning"]
+[node name="PowerIndicator" type="Label" parent="DeathWarning"]
 offset_left = 592.0
 offset_top = 380.0
 offset_right = 1350.0
 offset_bottom = 517.0
-text = "Repair Oxygen!!"
+text = "Power Oxygen!!"
 label_settings = SubResource("LabelSettings_1kt3j")
 
 [node name="CountDown" type="Label" parent="DeathWarning"]
