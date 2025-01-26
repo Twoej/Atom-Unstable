@@ -1,25 +1,186 @@
-[gd_scene load_steps=5 format=3 uid="uid://ccwwebfjaooye"]
+[gd_scene load_steps=24 format=3 uid="uid://ccwwebfjaooye"]
 
 [ext_resource type="Script" path="res://Scenes/player.gd" id="1_yairi"]
+[ext_resource type="Texture2D" uid="uid://cpll2e8dkv4ns" path="res://Sprites/Player.png" id="2_uesfv"]
+[ext_resource type="Script" path="res://Scenes/player_sprite.gd" id="3_10m84"]
 
-[sub_resource type="Gradient" id="Gradient_urvwn"]
-colors = PackedColorArray(0.835718, 3.22476e-06, 7.70092e-07, 1, 0.666667, 0.0666667, 0.0313726, 1)
+[sub_resource type="AtlasTexture" id="AtlasTexture_j1aa1"]
+atlas = ExtResource("2_uesfv")
+region = Rect2(64, 64, 32, 32)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_sr0s2"]
-gradient = SubResource("Gradient_urvwn")
+[sub_resource type="AtlasTexture" id="AtlasTexture_yxkie"]
+atlas = ExtResource("2_uesfv")
+region = Rect2(96, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hhx5c"]
+atlas = ExtResource("2_uesfv")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_brl8m"]
+atlas = ExtResource("2_uesfv")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0y2wa"]
+atlas = ExtResource("2_uesfv")
+region = Rect2(96, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tavb2"]
+atlas = ExtResource("2_uesfv")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_02aid"]
+atlas = ExtResource("2_uesfv")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o1ie1"]
+atlas = ExtResource("2_uesfv")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_366j5"]
+atlas = ExtResource("2_uesfv")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cyora"]
+atlas = ExtResource("2_uesfv")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hnbti"]
+atlas = ExtResource("2_uesfv")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cemjo"]
+atlas = ExtResource("2_uesfv")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x8hic"]
+atlas = ExtResource("2_uesfv")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q0bmw"]
+atlas = ExtResource("2_uesfv")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4uecs"]
+atlas = ExtResource("2_uesfv")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c0thp"]
+atlas = ExtResource("2_uesfv")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wsn40"]
+atlas = ExtResource("2_uesfv")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0dayv"]
+atlas = ExtResource("2_uesfv")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wobyf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j1aa1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yxkie")
+}],
+"loop": true,
+"name": &"anti-grav",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hhx5c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_brl8m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0y2wa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tavb2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_02aid")
+}],
+"loop": false,
+"name": &"falling",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o1ie1")
+}],
+"loop": false,
+"name": &"in_air",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_366j5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cyora")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hnbti")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cemjo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x8hic")
+}],
+"loop": false,
+"name": &"jump_start",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q0bmw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4uecs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c0thp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wsn40")
+}],
+"loop": true,
+"name": &"run_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0dayv")
+}],
+"loop": false,
+"name": &"still",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_brcr0"]
-size = Vector2(30, 46)
+size = Vector2(44, 62)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_yairi")
-speed = 300
-gravity = 30
-jump_force = 600
+speed = 400
+jump_height = 1200.0
+jump_time_to_peak = 1.0
+jump_time_to_descent = 0.5
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.453125, 0.71875)
-texture = SubResource("GradientTexture2D_sr0s2")
+[node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-6, -5)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_wobyf")
+animation = &"anti-grav"
+autoplay = "still"
+script = ExtResource("3_10m84")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_brcr0")
@@ -28,4 +189,14 @@ shape = SubResource("RectangleShape2D_brcr0")
 wait_time = 0.2
 one_shot = true
 
+[node name="AirborneTimer" type="Timer" parent="."]
+wait_time = 0.3
+
+[node name="Area2D" type="Area2D" parent="." groups=["Player"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_brcr0")
+
+[connection signal="animation_changed" from="PlayerSprite" to="PlayerSprite" method="_on_animation_changed"]
 [connection signal="timeout" from="RotationAdjustDelay" to="." method="_on_rotation_adjust_delay_timeout"]
+[connection signal="timeout" from="AirborneTimer" to="." method="_on_airborne_timer_timeout"]

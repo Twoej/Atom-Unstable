@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://xiylpl7wm3ey"]
+[gd_scene load_steps=8 format=3 uid="uid://xiylpl7wm3ey"]
 
 [ext_resource type="Script" path="res://Scenes/spaceship.gd" id="1_eua8s"]
 [ext_resource type="PackedScene" uid="uid://ccwwebfjaooye" path="res://Scenes/player.tscn" id="1_xjli7"]
+[ext_resource type="PackedScene" uid="uid://pp88115dmrs" path="res://Scenes/Systems/gravity_system.tscn" id="2_tt4xs"]
+[ext_resource type="PackedScene" uid="uid://b7g0nwgl1bn0p" path="res://Scenes/Systems/oxygen_system.tscn" id="3_hoyif"]
 
 [sub_resource type="Gradient" id="Gradient_j3380"]
 colors = PackedColorArray(0, 0.764706, 0, 1, 0, 0.764706, 0, 1)
@@ -18,6 +20,16 @@ script = ExtResource("1_eua8s")
 [node name="RotationalAxis" type="Node2D" parent="."]
 position = Vector2(564, 299)
 
+[node name="Systems" type="Node2D" parent="RotationalAxis"]
+position = Vector2(-564, -299)
+
+[node name="GravitySystem" parent="RotationalAxis/Systems" instance=ExtResource("2_tt4xs")]
+position = Vector2(779, 491)
+
+[node name="OxygenSystem" parent="RotationalAxis/Systems" instance=ExtResource("3_hoyif")]
+position = Vector2(641, 474)
+power_loss_rate = 50.0
+
 [node name="Platform" type="StaticBody2D" parent="RotationalAxis"]
 position = Vector2(0, 246)
 
@@ -30,3 +42,10 @@ shape = SubResource("RectangleShape2D_lhuxa")
 
 [node name="Player" parent="." instance=ExtResource("1_xjli7")]
 position = Vector2(429, 403)
+jump_height = 15000.0
+jump_time_to_peak = 25.0
+jump_time_to_descent = 20.0
+anti_grav_speed = 200.0
+
+[connection signal="gravity_down" from="RotationalAxis/Systems/GravitySystem" to="Player" method="_on_gravity_system_gravity_down"]
+[connection signal="gravity_powered" from="RotationalAxis/Systems/GravitySystem" to="Player" method="_on_gravity_system_gravity_powered"]

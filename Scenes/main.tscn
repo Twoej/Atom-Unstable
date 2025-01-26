@@ -1,3 +1,67 @@
-[gd_scene format=3 uid="uid://bl61bhayqbu0e"]
+[gd_scene load_steps=7 format=3 uid="uid://bl61bhayqbu0e"]
+
+[ext_resource type="Script" path="res://Scenes/main.gd" id="1_2mhm4"]
+[ext_resource type="PackedScene" uid="uid://xiylpl7wm3ey" path="res://Scenes/spaceship.tscn" id="2_e1k1b"]
+[ext_resource type="PackedScene" uid="uid://b4sd4w2pqn3n4" path="res://Scenes/game_over.tscn" id="2_oojck"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_qdhcp"]
+font_size = 150
+font_color = Color(0.941176, 0.0980392, 0, 1)
+outline_size = 20
+outline_color = Color(0.333333, 0.2, 0.811765, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_1kt3j"]
+font_size = 100
+font_color = Color(0.941176, 0.0980392, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_g2jlm"]
+font_size = 100
+font_color = Color(0.941176, 0.0980392, 0, 1)
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_2mhm4")
+game_over_tscn = ExtResource("2_oojck")
+
+[node name="Spaceship" parent="." instance=ExtResource("2_e1k1b")]
+
+[node name="Controls" type="Node2D" parent="."]
+
+[node name="InteractControl" type="Label" parent="Controls"]
+visible = false
+offset_left = 1729.0
+offset_top = 943.0
+offset_right = 1877.0
+offset_bottom = 966.0
+text = "Press 'e' to interact"
+
+[node name="DeathWarning" type="Node2D" parent="."]
+visible = false
+
+[node name="DeathImminent" type="Label" parent="DeathWarning"]
+offset_right = 1923.0
+offset_bottom = 612.0
+text = "Death Imminent"
+label_settings = SubResource("LabelSettings_qdhcp")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OxygenRepair" type="Label" parent="DeathWarning"]
+offset_left = 592.0
+offset_top = 380.0
+offset_right = 1350.0
+offset_bottom = 517.0
+text = "Repair Oxygen!!"
+label_settings = SubResource("LabelSettings_1kt3j")
+
+[node name="CountDown" type="Label" parent="DeathWarning"]
+offset_left = 910.0
+offset_top = 534.0
+offset_right = 967.0
+offset_bottom = 671.0
+label_settings = SubResource("LabelSettings_g2jlm")
+
+[node name="DeathTimer" type="Timer" parent="DeathWarning"]
+wait_time = 5.5
+one_shot = true
+
+[connection signal="timeout" from="DeathWarning/DeathTimer" to="." method="_on_death_timer_timeout"]

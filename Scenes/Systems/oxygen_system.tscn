@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://b7g0nwgl1bn0p"]
+
+[ext_resource type="Script" path="res://Scenes/Systems/oxygen_system.gd" id="1_2nsjr"]
+
+[sub_resource type="Gradient" id="Gradient_cgaq2"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0.831373, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_g0evh"]
+gradient = SubResource("Gradient_cgaq2")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sh22d"]
+size = Vector2(64, 64)
+
+[node name="OxygenSystem" type="Area2D"]
+script = ExtResource("1_2nsjr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_g0evh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_sh22d")
+
+[node name="PowerRemaining" type="Label" parent="."]
+offset_left = -20.0
+offset_top = -56.0
+offset_right = 20.0
+offset_bottom = -33.0
