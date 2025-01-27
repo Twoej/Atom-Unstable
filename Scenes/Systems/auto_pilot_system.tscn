@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://dkfhtdw46dhkc"]
+
+[ext_resource type="Script" path="res://Scenes/Systems/auto_pilot_system.gd" id="1_jihvd"]
+
+[sub_resource type="Gradient" id="Gradient_s6snu"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0qdbm"]
+gradient = SubResource("Gradient_s6snu")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tulco"]
+size = Vector2(64, 64)
+
+[node name="AutoPilotSystem" type="Area2D"]
+script = ExtResource("1_jihvd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_0qdbm")
+
+[node name="PowerRemaining" type="Label" parent="."]
+offset_left = -19.0
+offset_top = -59.0
+offset_right = 21.0
+offset_bottom = -36.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_tulco")
+
+[node name="ShipAngleCorrection" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="ShipAngleCorrection" to="." method="_on_ship_angle_correction_timeout"]

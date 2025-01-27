@@ -1,35 +1,29 @@
-[gd_scene load_steps=6 format=3 uid="uid://pp88115dmrs"]
+[gd_scene load_steps=5 format=3 uid="uid://pp88115dmrs"]
 
 [ext_resource type="Script" path="res://Scenes/Systems/gravity_system.gd" id="1_uylgc"]
-
-[sub_resource type="Gradient" id="Gradient_n3x7g"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0, 0, 0.670588, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_vq15n"]
-gradient = SubResource("Gradient_n3x7g")
-fill_from = Vector2(0, 0.00904977)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_06g38"]
-size = Vector2(40, 40)
+[ext_resource type="Texture2D" uid="uid://omocvqgtvx2" path="res://Sprites/GravityMachine.png" id="2_2pcbw"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0t3oc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_06g38"]
+size = Vector2(90, 72)
 
 [node name="GravitySystem" type="Area2D"]
 script = ExtResource("1_uylgc")
 
+[node name="PowerRemaining" type="Label" parent="."]
+texture_filter = 1
+offset_left = -18.0
+offset_top = -66.0
+offset_right = 22.0
+offset_bottom = -43.0
+label_settings = SubResource("LabelSettings_0t3oc")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(1.43051e-06, 5.06639e-07)
-scale = Vector2(0.625, 0.625)
-texture = SubResource("GradientTexture2D_vq15n")
+texture_filter = 1
+position = Vector2(-11, 2)
+scale = Vector2(2, 2)
+texture = ExtResource("2_2pcbw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_06g38")
-
-[node name="PowerRemaining" type="Label" parent="."]
-texture_filter = 1
-offset_left = -20.0
-offset_top = -43.0
-offset_right = 20.0
-offset_bottom = -20.0
-label_settings = SubResource("LabelSettings_0t3oc")
