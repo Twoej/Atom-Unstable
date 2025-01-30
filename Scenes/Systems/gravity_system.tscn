@@ -1,7 +1,71 @@
-[gd_scene load_steps=5 format=3 uid="uid://pp88115dmrs"]
+[gd_scene load_steps=11 format=3 uid="uid://pp88115dmrs"]
 
 [ext_resource type="Script" path="res://Scenes/Systems/gravity_system.gd" id="1_uylgc"]
-[ext_resource type="Texture2D" uid="uid://omocvqgtvx2" path="res://Sprites/GravityMachine.png" id="2_2pcbw"]
+[ext_resource type="Texture2D" uid="uid://ms0s0e4qtgoy" path="res://Sprites/Gravity.png" id="2_ocv2x"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t4g5e"]
+atlas = ExtResource("2_ocv2x")
+region = Rect2(0, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g07dr"]
+atlas = ExtResource("2_ocv2x")
+region = Rect2(60, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kajcn"]
+atlas = ExtResource("2_ocv2x")
+region = Rect2(120, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uj1i5"]
+atlas = ExtResource("2_ocv2x")
+region = Rect2(0, 60, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nn5gx"]
+atlas = ExtResource("2_ocv2x")
+region = Rect2(60, 60, 60, 60)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ivlxf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t4g5e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g07dr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kajcn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uj1i5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nn5gx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t4g5e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t4g5e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t4g5e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t4g5e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t4g5e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t4g5e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t4g5e")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0t3oc"]
 
@@ -11,6 +75,12 @@ size = Vector2(90, 72)
 [node name="GravitySystem" type="Area2D"]
 script = ExtResource("1_uylgc")
 
+[node name="SystemSprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-11, 2)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_ivlxf")
+
 [node name="PowerRemaining" type="Label" parent="."]
 texture_filter = 1
 offset_left = -18.0
@@ -18,12 +88,6 @@ offset_top = -66.0
 offset_right = 22.0
 offset_bottom = -43.0
 label_settings = SubResource("LabelSettings_0t3oc")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture_filter = 1
-position = Vector2(-11, 2)
-scale = Vector2(2, 2)
-texture = ExtResource("2_2pcbw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_06g38")

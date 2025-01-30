@@ -20,6 +20,10 @@ func _ready():
 	self.area_entered.connect(self._on_area_entered)
 	self.area_exited.connect(self._on_area_exited)
 	
+	var anim_start_frame = randi_range(0, 8)
+	$SystemSprite.set_frame(anim_start_frame)
+	$SystemSprite.play()
+	
 	_connect_signals()
 
 func _process(delta):
@@ -53,6 +57,7 @@ func _interacted():
 	var minigame = power_minigame_tscn.instantiate()
 	main.get_child(0).get_child(0).add_child(minigame)
 	minigame.set_sibling_system(self)
+	minigame.set_position(Vector2(960, 540))
 
 func _power_depleted():
 	pass

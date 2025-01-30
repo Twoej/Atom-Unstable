@@ -1,22 +1,89 @@
-[gd_scene load_steps=5 format=3 uid="uid://cuwg43v4ac7xq"]
+[gd_scene load_steps=10 format=3 uid="uid://cuwg43v4ac7xq"]
 
 [ext_resource type="Script" path="res://Scenes/Systems/engine_system.gd" id="1_ttw2h"]
+[ext_resource type="Texture2D" uid="uid://cv8o3wdycyuo" path="res://Sprites/Engine.png" id="2_tgj23"]
 
-[sub_resource type="Gradient" id="Gradient_oletl"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0, 0.611765, 0, 1)
+[sub_resource type="AtlasTexture" id="AtlasTexture_o4qcv"]
+atlas = ExtResource("2_tgj23")
+region = Rect2(0, 0, 60, 60)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_qfhye"]
-gradient = SubResource("Gradient_oletl")
+[sub_resource type="AtlasTexture" id="AtlasTexture_16ps6"]
+atlas = ExtResource("2_tgj23")
+region = Rect2(60, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4wk7e"]
+atlas = ExtResource("2_tgj23")
+region = Rect2(120, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_epodn"]
+atlas = ExtResource("2_tgj23")
+region = Rect2(0, 60, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lau2i"]
+atlas = ExtResource("2_tgj23")
+region = Rect2(60, 60, 60, 60)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fja4m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o4qcv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_16ps6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4wk7e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_epodn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_epodn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lau2i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o4qcv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o4qcv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o4qcv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o4qcv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o4qcv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o4qcv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o4qcv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o4qcv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8vjqh"]
-size = Vector2(64, 64)
+size = Vector2(80, 52)
 
 [node name="EngineSystem" type="Area2D"]
 script = ExtResource("1_ttw2h")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("GradientTexture2D_qfhye")
+[node name="SystemSprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -4)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_fja4m")
 
 [node name="PowerRemaining" type="Label" parent="."]
 offset_left = -20.0

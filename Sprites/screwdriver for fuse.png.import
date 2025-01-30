@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bhv0osrhhsgfl"
-path="res://.godot/imported/Oxygen.png-5b56b64a75ac531692d5676974b389a1.ctex"
+uid="uid://b3gldjpdk2lhl"
+path="res://.godot/imported/screwdriver for fuse.png-79318cd7dd9facc5ff85dd31b3c66d4c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Oxygen.png"
-dest_files=["res://.godot/imported/Oxygen.png-5b56b64a75ac531692d5676974b389a1.ctex"]
+source_file="res://Sprites/screwdriver for fuse.png"
+dest_files=["res://.godot/imported/screwdriver for fuse.png-79318cd7dd9facc5ff85dd31b3c66d4c.ctex"]
 
 [params]
 

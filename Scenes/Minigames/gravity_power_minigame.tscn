@@ -1,15 +1,79 @@
-[gd_scene load_steps=2 format=3 uid="uid://dykqi2yi3h5vn"]
+[gd_scene load_steps=11 format=3 uid="uid://dykqi2yi3h5vn"]
 
 [ext_resource type="Script" path="res://Scenes/Minigames/gravity_power_minigame.gd" id="1_p8gpa"]
+[ext_resource type="Texture2D" uid="uid://b1ven5t5p1ryi" path="res://Sprites/FuseMinigame.png" id="2_7v42a"]
+[ext_resource type="Script" path="res://Scenes/pick_up_item.gd" id="3_tjd65"]
+[ext_resource type="Texture2D" uid="uid://s5yuwb5kdbwr" path="res://Sprites/hammer for fuse.png" id="4_8eyja"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ibohk"]
+radius = 17.0
+height = 210.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2ycao"]
+radius = 25.0
+height = 152.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ubpp3"]
+size = Vector2(1224, 117.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r0qxo"]
+size = Vector2(163, 757)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wgak3"]
+size = Vector2(1213.5, 135.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d7nfp"]
+size = Vector2(219.25, 764)
 
 [node name="GravityPowerMinigame" type="Node2D"]
 script = ExtResource("1_p8gpa")
 
-[node name="Button" type="Button" parent="."]
-offset_left = 823.0
-offset_top = 453.0
-offset_right = 1120.0
-offset_bottom = 596.0
-text = "Power"
+[node name="Breaker" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("2_7v42a")
 
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[node name="PickUpItem" type="Area2D" parent="."]
+script = ExtResource("3_tjd65")
+
+[node name="Sprite2DShadow" type="Sprite2D" parent="PickUpItem"]
+self_modulate = Color(0, 0, 0, 1)
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("4_8eyja")
+
+[node name="Sprite2D" type="Sprite2D" parent="PickUpItem"]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("4_8eyja")
+
+[node name="Base" type="CollisionShape2D" parent="PickUpItem"]
+shape = SubResource("CapsuleShape2D_ibohk")
+
+[node name="Head" type="CollisionShape2D" parent="PickUpItem"]
+position = Vector2(4, -81)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_2ycao")
+
+[node name="Borders" type="Area2D" parent="." groups=["Minigame"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders"]
+position = Vector2(22, -333.625)
+shape = SubResource("RectangleShape2D_ubpp3")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Borders"]
+position = Vector2(-525.5, 11)
+shape = SubResource("RectangleShape2D_r0qxo")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Borders"]
+position = Vector2(17, 338.75)
+shape = SubResource("RectangleShape2D_wgak3")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Borders"]
+position = Vector2(554.625, 10)
+shape = SubResource("RectangleShape2D_d7nfp")
+
+[connection signal="area_entered" from="PickUpItem" to="PickUpItem" method="_on_area_entered"]
+[connection signal="area_exited" from="PickUpItem" to="PickUpItem" method="_on_area_exited"]
+[connection signal="mouse_entered" from="PickUpItem" to="PickUpItem" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="PickUpItem" to="PickUpItem" method="_on_mouse_exited"]

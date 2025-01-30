@@ -37,7 +37,6 @@ func _physics_process(delta):
 		if elapsed_time > 1:
 			elapsed_time = 1
 		$Player.set_gravity_direction($RotationalAxis.get_rotation())
-		$Player.ship_angle_correction()
 		
 
 
@@ -71,3 +70,12 @@ func _on_lights_system_lights_powered():
 	if temp_dark != null:
 		temp_dark.lights_powered()
 		temp_dark = null
+
+
+func _on_temperature_system_temperature_down():
+	$RotationalAxis/Ship/IceFloors.set_visible(true)
+	$IceTimer.start()
+
+
+func _on_ice_timer_timeout():
+	$RotationalAxis/Ship/IceFloors.set_visible(false)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bhv0osrhhsgfl"
-path="res://.godot/imported/Oxygen.png-5b56b64a75ac531692d5676974b389a1.ctex"
+uid="uid://q4cgplafg6g8"
+path="res://.godot/imported/TemperatureOld.png-9f3b1ef1f7638f18ec15611960bfaf68.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Oxygen.png"
-dest_files=["res://.godot/imported/Oxygen.png-5b56b64a75ac531692d5676974b389a1.ctex"]
+source_file="res://Sprites/TemperatureOld.png"
+dest_files=["res://.godot/imported/TemperatureOld.png-9f3b1ef1f7638f18ec15611960bfaf68.ctex"]
 
 [params]
 

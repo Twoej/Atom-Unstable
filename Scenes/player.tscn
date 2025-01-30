@@ -210,9 +210,13 @@ one_shot = true
 wait_time = 0.15
 one_shot = true
 
+[node name="SliderTimer" type="Timer" parent="."]
+wait_time = 0.5
+
 [connection signal="animation_changed" from="PlayerSprite" to="PlayerSprite" method="_on_animation_changed"]
 [connection signal="timeout" from="RotationAdjustDelay" to="." method="_on_rotation_adjust_delay_timeout"]
 [connection signal="timeout" from="AirborneTimer" to="." method="_on_airborne_timer_timeout"]
 [connection signal="timeout" from="IceTimer" to="." method="_on_ice_timer_timeout"]
 [connection signal="timeout" from="LightOutTimer" to="." method="_on_light_out_timer_timeout"]
 [connection signal="timeout" from="JumpCooldown" to="." method="_on_jump_cooldown_timeout"]
+[connection signal="timeout" from="SliderTimer" to="." method="_on_slider_timer_timeout"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://xiylpl7wm3ey"]
+[gd_scene load_steps=21 format=3 uid="uid://xiylpl7wm3ey"]
 
 [ext_resource type="Script" path="res://Scenes/spaceship.gd" id="1_eua8s"]
 [ext_resource type="PackedScene" uid="uid://ccwwebfjaooye" path="res://Scenes/player.tscn" id="1_xjli7"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b7g0nwgl1bn0p" path="res://Scenes/Systems/oxygen_system.tscn" id="3_hoyif"]
 [ext_resource type="PackedScene" uid="uid://coagv5heiiek5" path="res://Scenes/Systems/temperature_system.tscn" id="4_1apss"]
 [ext_resource type="PackedScene" uid="uid://dykqi2yi3h5vn" path="res://Scenes/Minigames/gravity_power_minigame.tscn" id="4_h3nss"]
+[ext_resource type="Texture2D" uid="uid://bxi4aoq1cxt7s" path="res://Sprites/Ice.png" id="4_q366a"]
 [ext_resource type="PackedScene" uid="uid://bp3gnj0jpnmdh" path="res://Scenes/Systems/lights_system.tscn" id="5_1epu1"]
 [ext_resource type="Texture2D" uid="uid://drcmaxdb8iy0w" path="res://Sprites/Temp ship.png" id="5_o5jer"]
 [ext_resource type="PackedScene" uid="uid://dkfhtdw46dhkc" path="res://Scenes/Systems/auto_pilot_system.tscn" id="7_pf2w2"]
@@ -79,14 +80,69 @@ position = Vector2(152, 652.75)
 shape = SubResource("RectangleShape2D_shmar")
 
 [node name="SecondFloor2" type="CollisionShape2D" parent="RotationalAxis/Ship"]
-position = Vector2(799.5, 653.25)
+position = Vector2(799, 653)
 shape = SubResource("RectangleShape2D_2x4x6")
 
 [node name="ThirdFloor" type="CollisionShape2D" parent="RotationalAxis/Ship"]
 position = Vector2(639, 513)
 shape = SubResource("RectangleShape2D_dmci0")
 
-[node name="Node2D" type="Node2D" parent="RotationalAxis/Ship"]
+[node name="IceFloors" type="Node2D" parent="RotationalAxis/Ship"]
+visible = false
+
+[node name="Ice" type="Sprite2D" parent="RotationalAxis/Ship/IceFloors"]
+texture_filter = 1
+position = Vector2(246, 373)
+texture = ExtResource("4_q366a")
+
+[node name="Ice2" type="Sprite2D" parent="RotationalAxis/Ship/IceFloors"]
+texture_filter = 1
+position = Vector2(477, 373)
+texture = ExtResource("4_q366a")
+
+[node name="Ice3" type="Sprite2D" parent="RotationalAxis/Ship/IceFloors"]
+texture_filter = 1
+position = Vector2(730, 513)
+texture = ExtResource("4_q366a")
+
+[node name="Ice4" type="Sprite2D" parent="RotationalAxis/Ship/IceFloors"]
+texture_filter = 1
+position = Vector2(486, 513)
+texture = ExtResource("4_q366a")
+
+[node name="Ice5" type="Sprite2D" parent="RotationalAxis/Ship/IceFloors"]
+texture_filter = 1
+position = Vector2(125, 653)
+texture = ExtResource("4_q366a")
+hframes = 2
+
+[node name="Ice6" type="Sprite2D" parent="RotationalAxis/Ship/IceFloors"]
+texture_filter = 1
+position = Vector2(221, 653)
+texture = ExtResource("4_q366a")
+hframes = 2
+
+[node name="Ice7" type="Sprite2D" parent="RotationalAxis/Ship/IceFloors"]
+texture_filter = 1
+position = Vector2(851, 653)
+texture = ExtResource("4_q366a")
+hframes = 2
+
+[node name="Ice8" type="Sprite2D" parent="RotationalAxis/Ship/IceFloors"]
+texture_filter = 1
+position = Vector2(700, 653)
+texture = ExtResource("4_q366a")
+hframes = 2
+
+[node name="Ice9" type="Sprite2D" parent="RotationalAxis/Ship/IceFloors"]
+texture_filter = 1
+position = Vector2(246, 793)
+texture = ExtResource("4_q366a")
+
+[node name="Ice10" type="Sprite2D" parent="RotationalAxis/Ship/IceFloors"]
+texture_filter = 1
+position = Vector2(730, 793)
+texture = ExtResource("4_q366a")
 
 [node name="Systems" type="Node2D" parent="RotationalAxis"]
 position = Vector2(-564, -299)
@@ -112,12 +168,12 @@ power_loss_rate = 0.0
 power_minigame_tscn = ExtResource("4_h3nss")
 
 [node name="AutoPilotSystem" parent="RotationalAxis/Systems" instance=ExtResource("7_pf2w2")]
-position = Vector2(328, 119)
-power_loss_rate = 30.0
+position = Vector2(324, 133)
+power_loss_rate = 0.0
 power_minigame_tscn = ExtResource("4_h3nss")
 
 [node name="EngineSystem" parent="RotationalAxis/Systems" instance=ExtResource("9_orkrm")]
-position = Vector2(440, 537)
+position = Vector2(433, 547)
 power_loss_rate = 0.0
 power_minigame_tscn = ExtResource("4_h3nss")
 
@@ -136,8 +192,13 @@ max_sliding_speed = 100.0
 slippery_accel = 4.0
 slippery_accel_stationary = 2.0
 
+[node name="IceTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
 [connection signal="gravity_down" from="RotationalAxis/Systems/GravitySystem" to="Player" method="_on_gravity_system_gravity_down"]
 [connection signal="gravity_powered" from="RotationalAxis/Systems/GravitySystem" to="Player" method="_on_gravity_system_gravity_powered"]
+[connection signal="temperature_down" from="RotationalAxis/Systems/TemperatureSystem" to="." method="_on_temperature_system_temperature_down"]
 [connection signal="temperature_down" from="RotationalAxis/Systems/TemperatureSystem" to="Player" method="_on_temperature_system_temperature_down"]
 [connection signal="lights_down" from="RotationalAxis/Systems/LightsSystem" to="." method="_on_lights_system_lights_down"]
 [connection signal="lights_down" from="RotationalAxis/Systems/LightsSystem" to="Player" method="_on_lights_system_lights_down"]
@@ -146,3 +207,4 @@ slippery_accel_stationary = 2.0
 [connection signal="auto_pilot_down" from="RotationalAxis/Systems/AutoPilotSystem" to="." method="_on_auto_pilot_system_auto_pilot_down"]
 [connection signal="auto_pilot_powered" from="RotationalAxis/Systems/AutoPilotSystem" to="." method="_on_auto_pilot_system_auto_pilot_powered"]
 [connection signal="ship_angle_correction_timeout" from="RotationalAxis/Systems/AutoPilotSystem" to="." method="_on_auto_pilot_system_ship_angle_correction_timeout"]
+[connection signal="timeout" from="IceTimer" to="." method="_on_ice_timer_timeout"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://omocvqgtvx2"
-path="res://.godot/imported/GravityMachine.png-774288350a1393e08f08dda2ef7b1dfd.ctex"
+uid="uid://d35cq75plbhft"
+path="res://.godot/imported/OxygenOld.png-d08bce7c338a69e1ceb1e02b8413d091.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/GravityMachine.png"
-dest_files=["res://.godot/imported/GravityMachine.png-774288350a1393e08f08dda2ef7b1dfd.ctex"]
+source_file="res://Sprites/OxygenOld.png"
+dest_files=["res://.godot/imported/OxygenOld.png-d08bce7c338a69e1ceb1e02b8413d091.ctex"]
 
 [params]
 

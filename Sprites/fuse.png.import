@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bhv0osrhhsgfl"
-path="res://.godot/imported/Oxygen.png-5b56b64a75ac531692d5676974b389a1.ctex"
+uid="uid://c2wf1j1s8151h"
+path="res://.godot/imported/fuse.png-fd7b9bc87b69c0ee7586103d01adc75e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Oxygen.png"
-dest_files=["res://.godot/imported/Oxygen.png-5b56b64a75ac531692d5676974b389a1.ctex"]
+source_file="res://Sprites/fuse.png"
+dest_files=["res://.godot/imported/fuse.png-fd7b9bc87b69c0ee7586103d01adc75e.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bhv0osrhhsgfl"
-path="res://.godot/imported/Oxygen.png-5b56b64a75ac531692d5676974b389a1.ctex"
+uid="uid://upnj3u7vjbon"
+path="res://.godot/imported/AutoPilot.png-5b1c8fcf1c2b966e3136e558c6df3ad1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Oxygen.png"
-dest_files=["res://.godot/imported/Oxygen.png-5b56b64a75ac531692d5676974b389a1.ctex"]
+source_file="res://Sprites/AutoPilot.png"
+dest_files=["res://.godot/imported/AutoPilot.png-5b1c8fcf1c2b966e3136e558c6df3ad1.ctex"]
 
 [params]
 

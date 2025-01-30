@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bhv0osrhhsgfl"
-path="res://.godot/imported/Oxygen.png-5b56b64a75ac531692d5676974b389a1.ctex"
+uid="uid://b1ven5t5p1ryi"
+path="res://.godot/imported/FuseMinigame.png-58dee4b8ca1e1b3b74a8dee0474c8b04.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Oxygen.png"
-dest_files=["res://.godot/imported/Oxygen.png-5b56b64a75ac531692d5676974b389a1.ctex"]
+source_file="res://Sprites/FuseMinigame.png"
+dest_files=["res://.godot/imported/FuseMinigame.png-58dee4b8ca1e1b3b74a8dee0474c8b04.ctex"]
 
 [params]
 

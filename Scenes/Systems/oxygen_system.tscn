@@ -1,7 +1,68 @@
-[gd_scene load_steps=4 format=3 uid="uid://b7g0nwgl1bn0p"]
+[gd_scene load_steps=10 format=3 uid="uid://b7g0nwgl1bn0p"]
 
 [ext_resource type="Script" path="res://Scenes/Systems/oxygen_system.gd" id="1_2nsjr"]
-[ext_resource type="Texture2D" uid="uid://d35cq75plbhft" path="res://Sprites/Oxygen.png" id="2_aynk2"]
+[ext_resource type="Texture2D" uid="uid://bhv0osrhhsgfl" path="res://Sprites/Oxygen.png" id="2_aynk2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a64it"]
+atlas = ExtResource("2_aynk2")
+region = Rect2(0, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mpqut"]
+atlas = ExtResource("2_aynk2")
+region = Rect2(60, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vxgp1"]
+atlas = ExtResource("2_aynk2")
+region = Rect2(120, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5omp7"]
+atlas = ExtResource("2_aynk2")
+region = Rect2(0, 60, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lvj5m"]
+atlas = ExtResource("2_aynk2")
+region = Rect2(60, 60, 60, 60)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4621c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a64it")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mpqut")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vxgp1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5omp7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lvj5m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a64it")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a64it")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a64it")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a64it")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a64it")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a64it")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sh22d"]
 size = Vector2(54, 98)
@@ -9,17 +70,18 @@ size = Vector2(54, 98)
 [node name="OxygenSystem" type="Area2D"]
 script = ExtResource("1_2nsjr")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="SystemSprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 position = Vector2(11, -3)
 scale = Vector2(2, 2)
-texture = ExtResource("2_aynk2")
+sprite_frames = SubResource("SpriteFrames_4621c")
 
 [node name="PowerRemaining" type="Label" parent="."]
 offset_left = -18.0
 offset_top = -84.0
 offset_right = 22.0
 offset_bottom = -61.0
+metadata/_edit_use_anchors_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_sh22d")

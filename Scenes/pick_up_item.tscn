@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://cegp60b3k3ouo"]
+
+[ext_resource type="Script" path="res://Scenes/pick_up_item.gd" id="1_jquv1"]
+[ext_resource type="Texture2D" uid="uid://s5yuwb5kdbwr" path="res://Sprites/hammer for fuse.png" id="2_142km"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3yp4v"]
+radius = 17.0
+height = 210.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_808h0"]
+radius = 25.0
+height = 152.0
+
+[node name="PickUpItem" type="Area2D"]
+script = ExtResource("1_jquv1")
+
+[node name="Sprite2DShadow" type="Sprite2D" parent="."]
+self_modulate = Color(0, 0, 0, 1)
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("2_142km")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("2_142km")
+
+[node name="Base" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_3yp4v")
+
+[node name="Head" type="CollisionShape2D" parent="."]
+position = Vector2(4, -81)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_808h0")
+
+[node name="PosTimer" type="Timer" parent="."]
+wait_time = 0.05
+autostart = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="timeout" from="PosTimer" to="." method="_on_pos_timer_timeout"]

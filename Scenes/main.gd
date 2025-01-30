@@ -32,7 +32,7 @@ func _on_oxygen_down():
 	if death_cause == "none":
 		death_cause = "oxygen"
 		$DeathWarning/PowerIndicator.set_text("Power Oxygen!!")
-		$DeathWarning/DeathTimer.start(5)
+		$DeathWarning/DeathTimer.start(5.5)
 		death_timer_started = true
 	else:
 		delayed_dying = true
