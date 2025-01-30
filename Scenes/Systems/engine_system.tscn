@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://cuwg43v4ac7xq"]
+
+[ext_resource type="Script" path="res://Scenes/Systems/engine_system.gd" id="1_ttw2h"]
+
+[sub_resource type="Gradient" id="Gradient_oletl"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0.611765, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qfhye"]
+gradient = SubResource("Gradient_oletl")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8vjqh"]
+size = Vector2(64, 64)
+
+[node name="EngineSystem" type="Area2D"]
+script = ExtResource("1_ttw2h")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_qfhye")
+
+[node name="PowerRemaining" type="Label" parent="."]
+offset_left = -20.0
+offset_top = -58.0
+offset_right = 20.0
+offset_bottom = -35.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_8vjqh")

@@ -4,6 +4,8 @@ class_name System extends Area2D
 @onready var power_remaining: float = power_max
 @export var power_loss_rate: float = 10
 
+@export var power_minigame_tscn: PackedScene
+
 var prev_power_remaining: float
 
 @onready var main = get_node("/root/Main")
@@ -14,7 +16,6 @@ func _ready():
 	#Connecting to display HUD indicating interact button
 	self.area_entered.connect(main._interact_control)
 	self.area_exited.connect(main._interact_control_fade)
-	
 	#Connecting to track when player is in area
 	self.area_entered.connect(self._on_area_entered)
 	self.area_exited.connect(self._on_area_exited)
@@ -47,10 +48,11 @@ func _on_area_entered(area):
 func _on_area_exited(area):
 	if area.is_in_group("Player"):
 		player_in_area = false
-		
+	
 func _interacted():
-	power_remaining = power_max
-	_power_replenished()
+	var minigame = power_minigame_tscn.instantiate()
+	main.get_child(0).get_child(0).add_child(minigame)
+	minigame.set_sibling_system(self)
 
 func _power_depleted():
 	pass
@@ -60,3 +62,7 @@ func _power_replenished():
 	
 func _connect_signals():
 	pass
+
+func _on_minigame_complete():
+	power_remaining = power_max
+	_power_replenished()

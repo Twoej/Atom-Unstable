@@ -6,6 +6,11 @@ extends Node2D
 
 var auto_pilot_down := false
 var angle_correction := false
+var elapsed_time := 0.0
+
+@export var darkness_tscn: PackedScene
+
+var temp_dark: Node2D
 
 func _physics_process(delta):
 	if abs($RotationalAxis.rotation) > (2 * PI):
@@ -22,10 +27,17 @@ func _physics_process(delta):
 			sway_speed -= sway_acceleration * delta
 		else:
 			sway_speed += sway_acceleration * delta
-	##THIS NEEDS ATTENTION
+		$Player.set_gravity_direction($RotationalAxis.get_rotation())
 	if angle_correction:
-		if abs($RotationalAxis.get_rotation()) < PI/16:
-			$RotationalAxis.set_rotation(0)
+		$RotationalAxis.set_rotation(lerp_angle($RotationalAxis.get_rotation(), 0, elapsed_time))
+		if $RotationalAxis.get_rotation() == 0:
+			angle_correction = false
+			elapsed_time = 0
+		elapsed_time += (delta / 2)
+		if elapsed_time > 1:
+			elapsed_time = 1
+		$Player.set_gravity_direction($RotationalAxis.get_rotation())
+		$Player.ship_angle_correction()
 		
 
 
@@ -47,3 +59,15 @@ func _on_auto_pilot_system_auto_pilot_powered():
 
 func _on_auto_pilot_system_ship_angle_correction_timeout():
 	angle_correction = true
+
+
+func _on_lights_system_lights_down():
+	var dark = darkness_tscn.instantiate()
+	$RotationalAxis/Ship.add_child(dark)
+	temp_dark = dark
+
+
+func _on_lights_system_lights_powered():
+	if temp_dark != null:
+		temp_dark.lights_powered()
+		temp_dark = null

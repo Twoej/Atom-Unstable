@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://difrimtwsfxbv"]
+
+[ext_resource type="Script" path="res://Scenes/progress_bar.gd" id="1_6uw6d"]
+
+[node name="ProgressBar" type="Node2D"]
+script = ExtResource("1_6uw6d")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = 274.0
+offset_top = 55.0
+offset_right = 1694.0
+offset_bottom = 82.0
+
+[node name="GameTime" type="Timer" parent="."]
+wait_time = 300.0
+one_shot = true
+autostart = true

@@ -32,13 +32,14 @@ func _on_oxygen_down():
 	if death_cause == "none":
 		death_cause = "oxygen"
 		$DeathWarning/PowerIndicator.set_text("Power Oxygen!!")
-		$DeathWarning/DeathTimer.start()
+		$DeathWarning/DeathTimer.start(5)
 		death_timer_started = true
 	else:
 		delayed_dying = true
 
 
 func _on_death_timer_timeout():
+	$ProgressBar.pause(true)
 	death_cause = "none"
 	$DeathWarning.set_visible(false)
 	death_timer_started = false
@@ -64,7 +65,7 @@ func _on_temperature_down():
 	if death_cause == "none":
 		death_cause = "temp"
 		$DeathWarning/PowerIndicator.set_text("Power Temperature System!!")
-		$DeathWarning/DeathTimer.start()
+		$DeathWarning/DeathTimer.start(10)
 		death_timer_started = true
 	else:
 		delayed_dying = true
@@ -81,3 +82,11 @@ func _on_temperature_powered():
 			_on_oxygen_down()
 	elif (death_cause == "oxygen") and delayed_dying:
 		delayed_dying = false
+		
+		
+
+func _on_engine_down():
+	$ProgressBar.pause(true)
+
+func _on_engine_powered():
+	$ProgressBar.pause(false)

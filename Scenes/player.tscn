@@ -1,7 +1,8 @@
-[gd_scene load_steps=24 format=3 uid="uid://ccwwebfjaooye"]
+[gd_scene load_steps=25 format=3 uid="uid://ccwwebfjaooye"]
 
 [ext_resource type="Script" path="res://Scenes/player.gd" id="1_yairi"]
 [ext_resource type="Texture2D" uid="uid://cpll2e8dkv4ns" path="res://Sprites/Player.png" id="2_uesfv"]
+[ext_resource type="PackedScene" uid="uid://bg3l2aqgay7yi" path="res://Scenes/player_light.tscn" id="2_uvrhg"]
 [ext_resource type="Script" path="res://Scenes/player_sprite.gd" id="3_10m84"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j1aa1"]
@@ -107,7 +108,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"falling",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -135,7 +136,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"jump_start",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -168,17 +169,17 @@ size = Vector2(22, 30)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_yairi")
-speed = 400
-jump_height = 1200.0
-jump_time_to_peak = 1.0
-jump_time_to_descent = 0.5
+jump_height = 900.0
+jump_time_to_peak = 0.75
+jump_time_to_descent = 0.4
+player_light_tscn = ExtResource("2_uvrhg")
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 position = Vector2(-3, -3)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_wobyf")
-animation = &"run_right"
+animation = &"jump_start"
 autoplay = "still"
 script = ExtResource("3_10m84")
 
@@ -197,6 +198,21 @@ wait_time = 0.3
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_brcr0")
 
+[node name="IceTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[node name="LightOutTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="JumpCooldown" type="Timer" parent="."]
+wait_time = 0.15
+one_shot = true
+
 [connection signal="animation_changed" from="PlayerSprite" to="PlayerSprite" method="_on_animation_changed"]
 [connection signal="timeout" from="RotationAdjustDelay" to="." method="_on_rotation_adjust_delay_timeout"]
 [connection signal="timeout" from="AirborneTimer" to="." method="_on_airborne_timer_timeout"]
+[connection signal="timeout" from="IceTimer" to="." method="_on_ice_timer_timeout"]
+[connection signal="timeout" from="LightOutTimer" to="." method="_on_light_out_timer_timeout"]
+[connection signal="timeout" from="JumpCooldown" to="." method="_on_jump_cooldown_timeout"]

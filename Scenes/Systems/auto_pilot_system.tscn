@@ -28,6 +28,7 @@ offset_bottom = -36.0
 shape = SubResource("RectangleShape2D_tulco")
 
 [node name="ShipAngleCorrection" type="Timer" parent="."]
+wait_time = 0.5
 one_shot = true
 
 [connection signal="timeout" from="ShipAngleCorrection" to="." method="_on_ship_angle_correction_timeout"]

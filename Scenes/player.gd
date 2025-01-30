@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var speed: int
+@export var speed: float
 
 @export var jump_height: float
 @export var jump_time_to_peak: float
@@ -16,12 +16,34 @@ var downward_velocity := Vector2.ZERO
 var current_angle := 0.0
 var fix_rotation := false
 var elapsed_time := 0.0
-var air_time_gravity = true
-var airborne = true
+var air_time_gravity := true
+var airborne := true
 
-var gravity_off = false
+var gravity_off := false
 @export var anti_grav_speed: float
 var anti_grav_direction := Vector2.ZERO
+
+var currently_active_minigame_system: System
+var currently_active_minigame: Minigame
+var player_frozen := false
+
+@export var sliding_accel: float
+var sliding_speed: float = 0
+@export var max_sliding_speed: float
+var slide := false
+var prev_angle := 0.0
+var ship_angle_correcting := false
+
+var slippery := false
+var horizontal_speed := 0.0
+@export var slippery_accel: float
+@export var slippery_accel_stationary: float
+
+@export var player_light_tscn: PackedScene
+
+var temp_light: Node2D
+
+var jump_cooldown_complete := true
 
 func _process(delta):
 	if gravity_off:
@@ -59,6 +81,22 @@ func _process(delta):
 	#If the player is airborne and at peak of jump and not already in the falling state play the falling animation
 	if !is_on_floor() and (downward_velocity.length() < 30) and airborne and ($PlayerSprite.get_current_animation() != "falling"):
 		$PlayerSprite.play("falling")
+	
+	if slide:
+		if prev_angle == current_angle:
+			slide = false
+			sliding_speed = 0
+		prev_angle = current_angle
+	else:
+		if prev_angle == current_angle:
+			ship_angle_correcting = false
+	
+	if player_frozen and (currently_active_minigame != null):
+		if self.get_position().distance_to(currently_active_minigame_system.get_position()) > 350:
+			player_frozen = false
+			currently_active_minigame_system = null
+			currently_active_minigame.queue_free()
+			currently_active_minigame = null
 
 func _physics_process(_delta):
 	if gravity_off:
@@ -67,11 +105,31 @@ func _physics_process(_delta):
 			velocity = 0.99 * velocity
 		else:
 			velocity = (0.93 * velocity) + (0.07 * (anti_grav_direction * anti_grav_speed))
+		if player_frozen:
+			velocity = Vector2.ZERO
 		move_and_slide()
 		return
 	#Determines player movement input and resulting speed
 	var horizontal_dir = Input.get_axis("move_left", "move_right")
-	velocity = right_direction * horizontal_dir * speed		#Uses right direction for current gravity
+	if player_frozen:
+		horizontal_dir = 0
+	if slippery:
+		horizontal_speed += horizontal_dir * slippery_accel
+		if horizontal_dir == 0:
+			if horizontal_speed > 0:
+				horizontal_speed -= slippery_accel_stationary
+			elif horizontal_speed < 0:
+				horizontal_speed += slippery_accel_stationary
+		if abs(horizontal_speed) > 2 * (speed/3):
+			horizontal_speed = horizontal_dir * 2 * (speed/3)
+	else:
+		horizontal_speed = horizontal_dir * speed
+	velocity = right_direction * horizontal_speed		#Uses right direction for current gravity
+	if slide and !ship_angle_correcting:
+		velocity += right_direction * sliding_speed
+		sliding_speed += sign(current_angle) * sliding_accel
+		if abs(sliding_speed) > max_sliding_speed:
+			sliding_speed = max_sliding_speed * sign(current_angle)
 	#Determines downward velocity, increase the longer player is in air
 	if !is_on_floor():
 		if $AirborneTimer.is_stopped():
@@ -79,20 +137,26 @@ func _physics_process(_delta):
 		#Casts desired speed onto gravity direction
 		downward_velocity += (_get_gravity() * gravity_direction)
 	else:
+		downward_velocity = downward_velocity * gravity_direction
+		if downward_velocity.length() > 500:
+			downward_velocity = 500 * gravity_direction
 		$AirborneTimer.stop()
 		airborne = false
-		downward_velocity = Vector2.ZERO
 		air_time_gravity = false
 	#Handles jump
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	if Input.is_action_just_pressed("jump") and is_on_floor() and !player_frozen and jump_cooldown_complete:
 		downward_velocity = (jump_velocity * gravity_direction)
 		$PlayerSprite.play("jump_start")
+		$JumpCooldown.start()
+		jump_cooldown_complete = false
 	#Add downward velocity to velocity
 	velocity += downward_velocity
 	
 	move_and_slide()
+		
 	
 func set_gravity_direction(angle):
+	slide = true
 	#Determines the vector of gravity direction
 	gravity_direction = Vector2(cos(angle + PI/2), sin(angle + PI/2)).normalized()
 	#stores the right direction (perpendicular to grav)
@@ -131,3 +195,45 @@ func _on_gravity_system_gravity_powered():
 	downward_velocity = Vector2.ZERO
 	anti_grav_direction = Vector2.ZERO
 	$PlayerSprite.play("falling", 1)
+
+func _on_minigame_active(sibling_system, minigame):
+	currently_active_minigame_system = sibling_system
+	currently_active_minigame = minigame
+	player_frozen = true
+
+func _on_minigame_complete():
+	currently_active_minigame_system = null
+	player_frozen = false
+
+
+func _on_temperature_system_temperature_down():
+	$IceTimer.start()
+	slippery = true
+
+
+func _on_ice_timer_timeout():
+	slippery = false
+	
+
+
+func _on_lights_system_lights_down():
+	var light = player_light_tscn.instantiate()
+	self.add_child(light)
+	temp_light = light
+
+
+func _on_lights_system_lights_powered():
+	$LightOutTimer.start()
+
+
+func _on_light_out_timer_timeout():
+	if temp_light != null:
+		temp_light.light_out()
+		temp_light = null
+
+func ship_angle_correction():
+	ship_angle_correcting = true
+
+
+func _on_jump_cooldown_timeout():
+	jump_cooldown_complete = true

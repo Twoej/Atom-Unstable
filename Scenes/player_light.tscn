@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bg3l2aqgay7yi"]
+
+[ext_resource type="Texture2D" uid="uid://c3lk1ws1keuqe" path="res://Sprites/LightCircle.png" id="1_sbegd"]
+[ext_resource type="Script" path="res://Scenes/player_light.gd" id="2_vdrsb"]
+
+[node name="PlayerLight" type="PointLight2D"]
+texture_filter = 1
+scale = Vector2(2, 2)
+energy = 0.0
+texture = ExtResource("1_sbegd")
+script = ExtResource("2_vdrsb")
