@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://6lw4nrcxgsdo"
-path="res://.godot/imported/tape for fuse.png-1d9f5ed4440cf29cd9da58b176cb5042.ctex"
+uid="uid://duwvcaes3c5x6"
+path="res://.godot/imported/unfinished fuse game.png-d7b134ced1fc3032c20c4d349944e4a7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/tape for fuse.png"
-dest_files=["res://.godot/imported/tape for fuse.png-1d9f5ed4440cf29cd9da58b176cb5042.ctex"]
+source_file="res://Sprites/unfinished fuse game.png"
+dest_files=["res://.godot/imported/unfinished fuse game.png-d7b134ced1fc3032c20c4d349944e4a7.ctex"]
 
 [params]
 

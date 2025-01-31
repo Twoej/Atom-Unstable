@@ -1,17 +1,14 @@
-[gd_scene load_steps=11 format=3 uid="uid://dykqi2yi3h5vn"]
+[gd_scene load_steps=20 format=3 uid="uid://dykqi2yi3h5vn"]
 
 [ext_resource type="Script" path="res://Scenes/Minigames/gravity_power_minigame.gd" id="1_p8gpa"]
 [ext_resource type="Texture2D" uid="uid://b1ven5t5p1ryi" path="res://Sprites/FuseMinigame.png" id="2_7v42a"]
+[ext_resource type="Texture2D" uid="uid://duwvcaes3c5x6" path="res://Sprites/unfinished fuse game.png" id="2_74vyw"]
 [ext_resource type="Script" path="res://Scenes/pick_up_item.gd" id="3_tjd65"]
-[ext_resource type="Texture2D" uid="uid://s5yuwb5kdbwr" path="res://Sprites/hammer for fuse.png" id="4_8eyja"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ibohk"]
-radius = 17.0
-height = 210.0
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2ycao"]
-radius = 25.0
-height = 152.0
+[ext_resource type="Texture2D" uid="uid://s5yuwb5kdbwr" path="res://Sprites/FuseHammer.png" id="4_8eyja"]
+[ext_resource type="Texture2D" uid="uid://c2wf1j1s8151h" path="res://Sprites/fuse.png" id="5_4nt0r"]
+[ext_resource type="Texture2D" uid="uid://b3gldjpdk2lhl" path="res://Sprites/FuseScrewdriver.png" id="6_ehhc6"]
+[ext_resource type="Texture2D" uid="uid://6lw4nrcxgsdo" path="res://Sprites/FuseTape.png" id="7_bld45"]
+[ext_resource type="Script" path="res://Scenes/fuse.gd" id="8_x1ihj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ubpp3"]
 size = Vector2(1224, 117.25)
@@ -25,35 +22,40 @@ size = Vector2(1213.5, 135.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d7nfp"]
 size = Vector2(219.25, 764)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fb1bv"]
+size = Vector2(386, 789)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q0loh"]
+radius = 7.0
+height = 48.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ibohk"]
+radius = 17.0
+height = 226.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2ycao"]
+radius = 25.0
+height = 152.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n6ic8"]
+radius = 55.0091
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p33yg"]
+size = Vector2(86, 39)
+
 [node name="GravityPowerMinigame" type="Node2D"]
 script = ExtResource("1_p8gpa")
 
-[node name="Breaker" type="Sprite2D" parent="."]
+[node name="BreakerIncomplete" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("2_74vyw")
+
+[node name="BreakerComplete" type="Sprite2D" parent="."]
+visible = false
 texture_filter = 1
 scale = Vector2(2, 2)
 texture = ExtResource("2_7v42a")
-
-[node name="PickUpItem" type="Area2D" parent="."]
-script = ExtResource("3_tjd65")
-
-[node name="Sprite2DShadow" type="Sprite2D" parent="PickUpItem"]
-self_modulate = Color(0, 0, 0, 1)
-texture_filter = 1
-scale = Vector2(2, 2)
-texture = ExtResource("4_8eyja")
-
-[node name="Sprite2D" type="Sprite2D" parent="PickUpItem"]
-texture_filter = 1
-scale = Vector2(2, 2)
-texture = ExtResource("4_8eyja")
-
-[node name="Base" type="CollisionShape2D" parent="PickUpItem"]
-shape = SubResource("CapsuleShape2D_ibohk")
-
-[node name="Head" type="CollisionShape2D" parent="PickUpItem"]
-position = Vector2(4, -81)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_2ycao")
 
 [node name="Borders" type="Area2D" parent="." groups=["Minigame"]]
 
@@ -73,7 +75,104 @@ shape = SubResource("RectangleShape2D_wgak3")
 position = Vector2(554.625, 10)
 shape = SubResource("RectangleShape2D_d7nfp")
 
-[connection signal="area_entered" from="PickUpItem" to="PickUpItem" method="_on_area_entered"]
-[connection signal="area_exited" from="PickUpItem" to="PickUpItem" method="_on_area_exited"]
-[connection signal="mouse_entered" from="PickUpItem" to="PickUpItem" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="PickUpItem" to="PickUpItem" method="_on_mouse_exited"]
+[node name="ItemBorder" type="Area2D" parent="." groups=["MinigameItem"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ItemBorder"]
+position = Vector2(-267, 2.5)
+shape = SubResource("RectangleShape2D_fb1bv")
+
+[node name="Fuse" type="Area2D" parent="." groups=["Fuse", "PickUpItem"]]
+script = ExtResource("8_x1ihj")
+
+[node name="Sprite2DShadow" type="Sprite2D" parent="Fuse"]
+self_modulate = Color(0, 0, 0, 0.72549)
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("5_4nt0r")
+
+[node name="Sprite2D" type="Sprite2D" parent="Fuse"]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("5_4nt0r")
+
+[node name="Hitbox" type="CollisionShape2D" parent="Fuse"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_q0loh")
+
+[node name="Hammer" type="Area2D" parent="." groups=["PickUpItem"]]
+z_index = 1
+position = Vector2(310, 43)
+script = ExtResource("3_tjd65")
+
+[node name="Sprite2DShadow" type="Sprite2D" parent="Hammer"]
+self_modulate = Color(0, 0, 0, 0.72549)
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("4_8eyja")
+
+[node name="Sprite2D" type="Sprite2D" parent="Hammer"]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("4_8eyja")
+
+[node name="Base" type="CollisionShape2D" parent="Hammer"]
+shape = SubResource("CapsuleShape2D_ibohk")
+
+[node name="Head" type="CollisionShape2D" parent="Hammer"]
+position = Vector2(4, -81)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_2ycao")
+
+[node name="Screwdriver" type="Area2D" parent="." groups=["PickUpItem"]]
+z_index = 2
+position = Vector2(213, 5)
+script = ExtResource("3_tjd65")
+
+[node name="Sprite2DShadow" type="Sprite2D" parent="Screwdriver"]
+self_modulate = Color(0, 0, 0, 0.72549)
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("6_ehhc6")
+
+[node name="Sprite2D" type="Sprite2D" parent="Screwdriver"]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("6_ehhc6")
+
+[node name="Hitbox" type="CollisionShape2D" parent="Screwdriver"]
+shape = SubResource("CapsuleShape2D_ibohk")
+
+[node name="Tape" type="Area2D" parent="." groups=["PickUpItem"]]
+z_index = 3
+position = Vector2(127, -122)
+script = ExtResource("3_tjd65")
+
+[node name="Sprite2DShadow" type="Sprite2D" parent="Tape"]
+self_modulate = Color(0, 0, 0, 0.72549)
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("7_bld45")
+
+[node name="Sprite2D" type="Sprite2D" parent="Tape"]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("7_bld45")
+
+[node name="Hitbox" type="CollisionShape2D" parent="Tape"]
+position = Vector2(-4, -2)
+rotation = 1.5708
+shape = SubResource("CircleShape2D_n6ic8")
+
+[node name="FuseSlot" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FuseSlot"]
+position = Vector2(-201, -51.5)
+shape = SubResource("RectangleShape2D_p33yg")
+
+[node name="WinTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="area_entered" from="FuseSlot" to="." method="_on_fuse_slot_area_entered"]
+[connection signal="area_exited" from="FuseSlot" to="." method="_on_fuse_slot_area_exited"]
+[connection signal="timeout" from="WinTimer" to="." method="_on_win_timer_timeout"]

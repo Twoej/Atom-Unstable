@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://s5yuwb5kdbwr"
-path="res://.godot/imported/hammer for fuse.png-633278b256222cdeb8256733764fb87c.ctex"
+uid="uid://6lw4nrcxgsdo"
+path="res://.godot/imported/FuseTape.png-6a7269f9ede904215be18336d69fde56.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/hammer for fuse.png"
-dest_files=["res://.godot/imported/hammer for fuse.png-633278b256222cdeb8256733764fb87c.ctex"]
+source_file="res://Sprites/FuseTape.png"
+dest_files=["res://.godot/imported/FuseTape.png-6a7269f9ede904215be18336d69fde56.ctex"]
 
 [params]
 
