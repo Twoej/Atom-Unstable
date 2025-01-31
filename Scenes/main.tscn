@@ -25,9 +25,13 @@ game_over_tscn = ExtResource("2_oojck")
 
 [node name="Spaceship" parent="." instance=ExtResource("2_e1k1b")]
 
-[node name="Controls" type="Node2D" parent="."]
+[node name="ProgressBar" parent="." instance=ExtResource("4_n5wht")]
 
-[node name="InteractControl" type="Label" parent="Controls"]
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="Controls" type="Node2D" parent="UILayer"]
+
+[node name="InteractControl" type="Label" parent="UILayer/Controls"]
 visible = false
 offset_left = 1729.0
 offset_top = 943.0
@@ -35,12 +39,10 @@ offset_right = 1877.0
 offset_bottom = 966.0
 text = "Press 'e' to interact"
 
-[node name="ProgressBar" parent="." instance=ExtResource("4_n5wht")]
-
-[node name="DeathWarning" type="Node2D" parent="."]
+[node name="DeathWarning" type="Node2D" parent="UILayer"]
 visible = false
 
-[node name="DeathImminent" type="Label" parent="DeathWarning"]
+[node name="DeathImminent" type="Label" parent="UILayer/DeathWarning"]
 offset_right = 1923.0
 offset_bottom = 612.0
 text = "Death Imminent"
@@ -48,7 +50,7 @@ label_settings = SubResource("LabelSettings_qdhcp")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PowerIndicator" type="Label" parent="DeathWarning"]
+[node name="PowerIndicator" type="Label" parent="UILayer/DeathWarning"]
 offset_left = 274.0
 offset_top = 392.0
 offset_right = 1670.0
@@ -57,15 +59,15 @@ text = "Power Oxygen!!"
 label_settings = SubResource("LabelSettings_1kt3j")
 horizontal_alignment = 1
 
-[node name="CountDown" type="Label" parent="DeathWarning"]
+[node name="CountDown" type="Label" parent="UILayer/DeathWarning"]
 offset_left = 910.0
 offset_top = 534.0
 offset_right = 967.0
 offset_bottom = 671.0
 label_settings = SubResource("LabelSettings_g2jlm")
 
-[node name="DeathTimer" type="Timer" parent="DeathWarning"]
+[node name="DeathTimer" type="Timer" parent="UILayer/DeathWarning"]
 wait_time = 5.5
 one_shot = true
 
-[connection signal="timeout" from="DeathWarning/DeathTimer" to="." method="_on_death_timer_timeout"]
+[connection signal="timeout" from="UILayer/DeathWarning/DeathTimer" to="." method="_on_death_timer_timeout"]

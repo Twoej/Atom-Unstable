@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dykqi2yi3h5vn"]
+[gd_scene load_steps=23 format=3 uid="uid://dykqi2yi3h5vn"]
 
 [ext_resource type="Script" path="res://Scenes/Minigames/gravity_power_minigame.gd" id="1_p8gpa"]
 [ext_resource type="Texture2D" uid="uid://b1ven5t5p1ryi" path="res://Sprites/FuseMinigame.png" id="2_7v42a"]
@@ -11,19 +11,28 @@
 [ext_resource type="Script" path="res://Scenes/fuse.gd" id="8_x1ihj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ubpp3"]
-size = Vector2(1224, 117.25)
+size = Vector2(4957, 1331)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r0qxo"]
-size = Vector2(163, 757)
+size = Vector2(829, 1674)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wgak3"]
-size = Vector2(1213.5, 135.5)
+size = Vector2(2938, 1495)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d7nfp"]
-size = Vector2(219.25, 764)
+size = Vector2(2343, 3088)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fb1bv"]
-size = Vector2(386, 789)
+size = Vector2(2020, 3760)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_006tb"]
+size = Vector2(517, 784.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bkuro"]
+size = Vector2(1518, 335)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_snpkw"]
+size = Vector2(1568, 278)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q0loh"]
 radius = 7.0
@@ -60,26 +69,38 @@ texture = ExtResource("2_7v42a")
 [node name="Borders" type="Area2D" parent="." groups=["Minigame"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Borders"]
-position = Vector2(22, -333.625)
+position = Vector2(408.5, -974.5)
 shape = SubResource("RectangleShape2D_ubpp3")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Borders"]
-position = Vector2(-525.5, 11)
+position = Vector2(-858.5, 123)
 shape = SubResource("RectangleShape2D_r0qxo")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Borders"]
-position = Vector2(17, 338.75)
+position = Vector2(339, 1040.5)
 shape = SubResource("RectangleShape2D_wgak3")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="Borders"]
-position = Vector2(554.625, 10)
+position = Vector2(1651.5, 135)
 shape = SubResource("RectangleShape2D_d7nfp")
 
 [node name="ItemBorder" type="Area2D" parent="." groups=["MinigameItem"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ItemBorder"]
-position = Vector2(-267, 2.5)
+position = Vector2(-1084, 133)
 shape = SubResource("RectangleShape2D_fb1bv")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="ItemBorder"]
+position = Vector2(714.5, 6.75)
+shape = SubResource("RectangleShape2D_006tb")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="ItemBorder"]
+position = Vector2(169, 448.5)
+shape = SubResource("RectangleShape2D_bkuro")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="ItemBorder"]
+position = Vector2(178, -430)
+shape = SubResource("RectangleShape2D_snpkw")
 
 [node name="Fuse" type="Area2D" parent="." groups=["Fuse", "PickUpItem"]]
 script = ExtResource("8_x1ihj")

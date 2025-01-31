@@ -30,6 +30,8 @@ func _ready():
 	direction = Vector2(randf() - randf(), randf() - randf()).normalized()
 	speed = randf_range(10, 100)
 	
+	_fuse_ready()
+	
 	
 
 func _process(delta):
@@ -39,14 +41,17 @@ func _process(delta):
 		self.set_position(get_parent().get_local_mouse_position())
 		held = true
 	if out_of_bounds and held:
-		var setback = ((self.get_position() - Vector2.ZERO).normalized() * 15)
+		var setback = ((self.get_position() - Vector2(20, 0)).normalized() * 15)
 		self.set_position(self.get_position() - setback)
 	if out_of_play and !held:
-		var setback = ((self.get_position() - Vector2.ZERO).normalized() * speed * delta * 2)
+		var distance_mod = (self.get_position() - Vector2(20, 0)).length()/50
+		if (self.get_position() - Vector2(20, 0)).length() < 450:
+			distance_mod = 2
+		var setback = ((self.get_position() - Vector2(20, 0)).normalized() * speed * delta * distance_mod)
 		self.set_position(self.get_position() - setback)
-	if !held:
+	if !held and !out_of_play:
 		self.set_position(self.get_position() + (direction * speed * delta))
-		if randi_range(0, 1000) == 1:
+		if randi_range(0, 500) == 1:
 			direction = Vector2(randf() - randf(), randf() - randf()).normalized()
 	
 	_fuse_process(delta)
@@ -81,4 +86,7 @@ func set_mouse_inside(mouse_inside):
 	self.mouse_inside = mouse_inside
 	
 func _fuse_process(delta):
+	pass
+
+func _fuse_ready():
 	pass

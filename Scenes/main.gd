@@ -9,30 +9,30 @@ var delayed_dying := false
 
 func _process(_delta):
 	if death_timer_started:
-		$DeathWarning/CountDown.set_text(str(int($DeathWarning/DeathTimer.get_time_left())))
-		if time_since_last_flash > 13 and $DeathWarning/DeathTimer.get_time_left() > 4.5:
+		$UILayer/DeathWarning/CountDown.set_text(str(int($UILayer/DeathWarning/DeathTimer.get_time_left())))
+		if time_since_last_flash > 13 and $UILayer/DeathWarning/DeathTimer.get_time_left() > 4.5:
 			time_since_last_flash = 0
-			if $DeathWarning.is_visible():
-				$DeathWarning.set_visible(false)
+			if $UILayer/DeathWarning.is_visible():
+				$UILayer/DeathWarning.set_visible(false)
 			else:
-				$DeathWarning.set_visible(true)
-		elif $DeathWarning/DeathTimer.get_time_left() <= 4:
-			$DeathWarning.set_visible(true)
+				$UILayer/DeathWarning.set_visible(true)
+		elif $UILayer/DeathWarning/DeathTimer.get_time_left() <= 4:
+			$UILayer/DeathWarning.set_visible(true)
 		time_since_last_flash += 1
 
 func _interact_control(area):
 	if area.is_in_group("Player"):
-		$Controls/InteractControl.set_visible(true)
+		$UILayer/Controls/InteractControl.set_visible(true)
 
 func _interact_control_fade(area):
 	if area.is_in_group("Player"):
-		$Controls/InteractControl.set_visible(false)
+		$UILayer/Controls/InteractControl.set_visible(false)
 
 func _on_oxygen_down():
 	if death_cause == "none":
 		death_cause = "oxygen"
-		$DeathWarning/PowerIndicator.set_text("Power Oxygen!!")
-		$DeathWarning/DeathTimer.start(5.5)
+		$UILayer/DeathWarning/PowerIndicator.set_text("Power Oxygen!!")
+		$UILayer/DeathWarning/DeathTimer.start(5.5)
 		death_timer_started = true
 	else:
 		delayed_dying = true
@@ -41,7 +41,7 @@ func _on_oxygen_down():
 func _on_death_timer_timeout():
 	$ProgressBar.pause(true)
 	death_cause = "none"
-	$DeathWarning.set_visible(false)
+	$UILayer/DeathWarning.set_visible(false)
 	death_timer_started = false
 	$Spaceship.queue_free()
 	var game_over_screen = game_over_tscn.instantiate()
@@ -50,9 +50,9 @@ func _on_death_timer_timeout():
 func _on_oxygen_powered():
 	if death_cause == "oxygen":
 		death_cause = "none"
-		$DeathWarning.set_visible(false)
+		$UILayer/DeathWarning.set_visible(false)
 		death_timer_started = false
-		$DeathWarning/DeathTimer.stop()
+		$UILayer/DeathWarning/DeathTimer.stop()
 		time_since_last_flash = 16
 		if delayed_dying:
 			delayed_dying = false
@@ -64,8 +64,8 @@ func _on_oxygen_powered():
 func _on_temperature_down():
 	if death_cause == "none":
 		death_cause = "temp"
-		$DeathWarning/PowerIndicator.set_text("Power Temperature System!!")
-		$DeathWarning/DeathTimer.start(10)
+		$UILayer/DeathWarning/PowerIndicator.set_text("Power Temperature System!!")
+		$UILayer/DeathWarning/DeathTimer.start(10)
 		death_timer_started = true
 	else:
 		delayed_dying = true
@@ -73,9 +73,9 @@ func _on_temperature_down():
 func _on_temperature_powered():
 	if death_cause == "temp":
 		death_cause = "none"
-		$DeathWarning.set_visible(false)
+		$UILayer/DeathWarning.set_visible(false)
 		death_timer_started = false
-		$DeathWarning/DeathTimer.stop()
+		$UILayer/DeathWarning/DeathTimer.stop()
 		time_since_last_flash = 16
 		if delayed_dying:
 			delayed_dying = false

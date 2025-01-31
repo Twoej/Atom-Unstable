@@ -1,0 +1,92 @@
+[gd_scene load_steps=8 format=3 uid="uid://byvevf30ds32u"]
+
+[ext_resource type="Script" path="res://Scenes/Minigames/light_power_minigame.gd" id="1_e4xbi"]
+[ext_resource type="Texture2D" uid="uid://baobxe236i1hg" path="res://Sprites/SwitchBackground.png" id="1_psa8j"]
+[ext_resource type="Texture2D" uid="uid://chao5jygqgj03" path="res://Sprites/SwitchOff.png" id="2_gxb74"]
+[ext_resource type="Texture2D" uid="uid://6natad3ycslv" path="res://Sprites/SwitchOn.png" id="3_4n38c"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pfoiu"]
+atlas = ExtResource("2_gxb74")
+region = Rect2(0, 0, 145, 264)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_owltu"]
+atlas = ExtResource("3_4n38c")
+region = Rect2(0, 0, 145, 264)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gs7ms"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pfoiu")
+}],
+"loop": false,
+"name": &"off",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_owltu")
+}],
+"loop": false,
+"name": &"on",
+"speed": 5.0
+}]
+
+[node name="LightPowerMinigame" type="Node2D"]
+script = ExtResource("1_e4xbi")
+
+[node name="Background" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("1_psa8j")
+
+[node name="Switch1" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-290, 0)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_gs7ms")
+animation = &"on"
+autoplay = "off"
+
+[node name="Button" type="Button" parent="Switch1"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -22.0
+offset_top = -32.0
+offset_right = 25.0
+offset_bottom = 34.0
+
+[node name="Switch2" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-6, 0)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_gs7ms")
+animation = &"off"
+autoplay = "off"
+
+[node name="Button" type="Button" parent="Switch2"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -22.0
+offset_top = -32.0
+offset_right = 24.0
+offset_bottom = 34.0
+
+[node name="Switch3" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(280, 0)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_gs7ms")
+animation = &"off"
+autoplay = "off"
+
+[node name="Button" type="Button" parent="Switch3"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -23.0
+offset_top = -32.0
+offset_right = 24.0
+offset_bottom = 34.0
+
+[node name="WinTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="timeout" from="WinTimer" to="." method="_on_win_timer_timeout"]

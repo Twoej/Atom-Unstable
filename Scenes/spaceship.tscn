@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://xiylpl7wm3ey"]
+[gd_scene load_steps=22 format=3 uid="uid://xiylpl7wm3ey"]
 
 [ext_resource type="Script" path="res://Scenes/spaceship.gd" id="1_eua8s"]
 [ext_resource type="PackedScene" uid="uid://ccwwebfjaooye" path="res://Scenes/player.tscn" id="1_xjli7"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bp3gnj0jpnmdh" path="res://Scenes/Systems/lights_system.tscn" id="5_1epu1"]
 [ext_resource type="Texture2D" uid="uid://drcmaxdb8iy0w" path="res://Sprites/Temp ship.png" id="5_o5jer"]
 [ext_resource type="PackedScene" uid="uid://dkfhtdw46dhkc" path="res://Scenes/Systems/auto_pilot_system.tscn" id="7_pf2w2"]
+[ext_resource type="PackedScene" uid="uid://byvevf30ds32u" path="res://Scenes/Minigames/light_power_minigame.tscn" id="8_35r3r"]
 [ext_resource type="PackedScene" uid="uid://cuwg43v4ac7xq" path="res://Scenes/Systems/engine_system.tscn" id="9_orkrm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6trln"]
@@ -154,8 +155,8 @@ power_minigame_tscn = ExtResource("4_h3nss")
 
 [node name="OxygenSystem" parent="RotationalAxis/Systems" instance=ExtResource("3_hoyif")]
 position = Vector2(706, 244)
-power_loss_rate = 0.0
-power_minigame_tscn = ExtResource("4_h3nss")
+power_loss_rate = 20.0
+power_minigame_tscn = ExtResource("8_35r3r")
 
 [node name="TemperatureSystem" parent="RotationalAxis/Systems" instance=ExtResource("4_1apss")]
 position = Vector2(197, 407)
@@ -164,7 +165,7 @@ power_minigame_tscn = ExtResource("4_h3nss")
 
 [node name="LightsSystem" parent="RotationalAxis/Systems" instance=ExtResource("5_1epu1")]
 position = Vector2(874, 531)
-power_loss_rate = 20.0
+power_loss_rate = 0.0
 power_minigame_tscn = ExtResource("4_h3nss")
 
 [node name="AutoPilotSystem" parent="RotationalAxis/Systems" instance=ExtResource("7_pf2w2")]

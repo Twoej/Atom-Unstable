@@ -33,7 +33,6 @@ func _on_pick_up_item_held_change(held: bool):
 
 func _on_fuse_slot_area_entered(area):
 	if area.is_in_group("Fuse"):
-		print("here")
 		fuse_in_place = true
 		fuse = area
 
