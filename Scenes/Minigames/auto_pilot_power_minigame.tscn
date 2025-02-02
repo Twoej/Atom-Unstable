@@ -62,6 +62,11 @@ offset_right = 79.0
 offset_bottom = 231.0
 text = "Press space, e, or lmb"
 
+[node name="ResetTimer" type="Timer" parent="."]
+wait_time = 0.7
+one_shot = true
+
 [connection signal="area_entered" from="Green" to="." method="_on_green_area_entered"]
 [connection signal="area_exited" from="Green" to="." method="_on_green_area_exited"]
 [connection signal="timeout" from="WinTimer" to="." method="_on_win_timer_timeout"]
+[connection signal="timeout" from="ResetTimer" to="." method="_on_reset_timer_timeout"]

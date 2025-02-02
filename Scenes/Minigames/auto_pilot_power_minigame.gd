@@ -31,6 +31,10 @@ func _process(_delta):
 		if in_green and rows_complete < 3:
 			dials[rows_complete].set_velocity(0)
 			rows_complete += 1
+		elif rows_complete < 3:
+			dials[rows_complete].queue_free()
+			dials.remove_at(rows_complete)
+			$ResetTimer.start()
 
 func _on_green_area_entered(area):
 	if area.is_in_group("Dial"):
@@ -44,3 +48,7 @@ func _on_green_area_exited(area):
 func _on_win_timer_timeout():
 	minigame_complete.emit()
 	self.queue_free()
+
+
+func _on_reset_timer_timeout():
+	rows_complete = rows_complete

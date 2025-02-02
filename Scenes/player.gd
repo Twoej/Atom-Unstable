@@ -197,6 +197,7 @@ func _on_gravity_system_gravity_powered():
 
 func _on_minigame_active(sibling_system, minigame):
 	currently_active_minigame_system = sibling_system
+	print("here1")
 	minigame_exited.connect(currently_active_minigame_system._on_minigame_exited)
 	currently_active_minigame = minigame
 	player_frozen = true

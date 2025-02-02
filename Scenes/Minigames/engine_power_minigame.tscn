@@ -76,7 +76,7 @@ texture = ExtResource("4_byvso")
 hframes = 3
 vframes = 2
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Block1"]
+[node name="Collision" type="CollisionPolygon2D" parent="Block1"]
 position = Vector2(-43, 58)
 polygon = PackedVector2Array(-112, -83, 67, -83, 67, 51, 23, 51, 23, -40, -112, -40)
 
@@ -104,7 +104,7 @@ hframes = 3
 vframes = 2
 frame = 1
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Block2"]
+[node name="Collision" type="CollisionPolygon2D" parent="Block2"]
 position = Vector2(6, 34.4)
 polygon = PackedVector2Array(-50, -124, -6, -124, -6, -79, 38, -79, 38, 9, -6, 10, -6, 54, -48, 54)
 
@@ -132,7 +132,7 @@ hframes = 3
 vframes = 2
 frame = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Block3"]
+[node name="Collision" type="CollisionShape2D" parent="Block3"]
 shape = SubResource("RectangleShape2D_ao426")
 
 [node name="Block4" type="Area2D" parent="." groups=["PickUpItem"]]
@@ -157,7 +157,7 @@ hframes = 3
 vframes = 2
 frame = 3
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Block4"]
+[node name="Collision" type="CollisionPolygon2D" parent="Block4"]
 polygon = PackedVector2Array(-27, -44, 62, -44, 62, 44, -72, 44, -72, 1, -27, 1)
 
 [node name="Block5" type="Area2D" parent="." groups=["PickUpItem"]]
@@ -184,7 +184,7 @@ hframes = 3
 vframes = 2
 frame = 4
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Block5"]
+[node name="Collision" type="CollisionPolygon2D" parent="Block5"]
 position = Vector2(-49, 29)
 polygon = PackedVector2Array(71, 15, 71, -30, 115, -30, 115, -73, 28, -73, 28, -29, -17, -29, -17, 14)
 
@@ -229,6 +229,7 @@ shape = SubResource("RectangleShape2D_vs3xm")
 [node name="FinalPositions" type="Node2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="FinalPositions"]
+visible = false
 texture_filter = 1
 position = Vector2(-120, -57)
 texture = ExtResource("4_byvso")
@@ -236,6 +237,7 @@ hframes = 3
 vframes = 2
 
 [node name="Sprite2D2" type="Sprite2D" parent="FinalPositions"]
+visible = false
 texture_filter = 1
 position = Vector2(-335, 25)
 texture = ExtResource("4_byvso")
@@ -244,6 +246,7 @@ vframes = 2
 frame = 1
 
 [node name="Sprite2D3" type="Sprite2D" parent="FinalPositions"]
+visible = false
 texture_filter = 1
 position = Vector2(-200, -45)
 texture = ExtResource("4_byvso")
@@ -252,6 +255,7 @@ vframes = 2
 frame = 2
 
 [node name="Sprite2D4" type="Sprite2D" parent="FinalPositions"]
+visible = false
 texture_filter = 1
 position = Vector2(-109, 135)
 texture = ExtResource("4_byvso")
@@ -260,6 +264,7 @@ vframes = 2
 frame = 3
 
 [node name="Sprite2D5" type="Sprite2D" parent="FinalPositions"]
+visible = false
 texture_filter = 1
 position = Vector2(-398, 193)
 texture = ExtResource("4_byvso")
@@ -297,6 +302,10 @@ shape = SubResource("RectangleShape2D_a5b2l")
 position = Vector2(-301, 136)
 shape = SubResource("RectangleShape2D_2ybig")
 
+[node name="WinTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
 [connection signal="mouse_entered" from="Block1Pos" to="." method="_on_block_1_pos_mouse_entered"]
 [connection signal="mouse_exited" from="Block1Pos" to="." method="_on_block_1_pos_mouse_exited"]
 [connection signal="mouse_entered" from="Block2Pos" to="." method="_on_block_2_pos_mouse_entered"]
@@ -307,3 +316,4 @@ shape = SubResource("RectangleShape2D_2ybig")
 [connection signal="mouse_exited" from="Block4Pos" to="." method="_on_block_4_pos_mouse_exited"]
 [connection signal="mouse_entered" from="Block5Pos" to="." method="_on_block_5_pos_mouse_entered"]
 [connection signal="mouse_exited" from="Block5Pos" to="." method="_on_block_5_pos_mouse_exited"]
+[connection signal="timeout" from="WinTimer" to="." method="_on_win_timer_timeout"]
