@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bl61bhayqbu0e"]
+[gd_scene load_steps=9 format=3 uid="uid://bl61bhayqbu0e"]
 
 [ext_resource type="Script" path="res://Scenes/main.gd" id="1_2mhm4"]
 [ext_resource type="PackedScene" uid="uid://xiylpl7wm3ey" path="res://Scenes/spaceship.tscn" id="2_e1k1b"]
 [ext_resource type="PackedScene" uid="uid://b4sd4w2pqn3n4" path="res://Scenes/game_over.tscn" id="2_oojck"]
 [ext_resource type="PackedScene" uid="uid://difrimtwsfxbv" path="res://Scenes/progress_bar.tscn" id="4_n5wht"]
+[ext_resource type="Texture2D" uid="uid://xm7lv8k1elf" path="res://Sprites/SpaceBackground.png" id="5_v7ja7"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_qdhcp"]
 font_size = 150
@@ -69,5 +70,12 @@ label_settings = SubResource("LabelSettings_g2jlm")
 [node name="DeathTimer" type="Timer" parent="UILayer/DeathWarning"]
 wait_time = 5.5
 one_shot = true
+
+[node name="SpaceBackground" type="Sprite2D" parent="."]
+z_index = -1
+texture_filter = 1
+position = Vector2(960, 540)
+scale = Vector2(2, 2)
+texture = ExtResource("5_v7ja7")
 
 [connection signal="timeout" from="UILayer/DeathWarning/DeathTimer" to="." method="_on_death_timer_timeout"]

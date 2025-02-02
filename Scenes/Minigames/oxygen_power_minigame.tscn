@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://khfdlg2bd3jp"]
+
+[ext_resource type="Texture2D" uid="uid://sma2qkev7q2a" path="res://Sprites/WireMinigame.png" id="1_8pcdf"]
+[ext_resource type="Script" path="res://Scenes/Minigames/oxygen_power_minigame.gd" id="1_s35ty"]
+
+[node name="OxygenPowerMinigame" type="Node2D"]
+script = ExtResource("1_s35ty")
+
+[node name="Background" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("1_8pcdf")
+hframes = 3
+vframes = 3
+
+[node name="Top" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -26.0
+offset_top = -111.0
+offset_right = 27.0
+offset_bottom = -46.0
+
+[node name="Middle" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -27.0
+offset_top = -32.0
+offset_right = 28.0
+offset_bottom = 33.0
+
+[node name="Bottom" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -27.0
+offset_top = 46.0
+offset_right = 28.0
+offset_bottom = 110.0
+
+[node name="WinTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="timeout" from="WinTimer" to="." method="_on_win_timer_timeout"]

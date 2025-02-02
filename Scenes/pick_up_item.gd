@@ -6,16 +6,20 @@ var held := false:
 	set(value):
 		held = value
 		held_change.emit(value)
+		held_unheld.emit(value, self)
 var out_of_play := false
 
 var direction: Vector2
 var speed: float
 
+var origin_point := Vector2(20, 0)
+
 signal mouse_in_out(item: PickUpItem, in_out: bool)
 signal held_change(held: bool)
+signal held_unheld(held: bool, item: PickUpItem)
 
 func _ready():
-	$Sprite2DShadow.set_position(Vector2(22, 7))
+	$Sprite2DShadow.set_position($Sprite2DShadow.get_position() + Vector2(22, 7))
 	
 	self.area_entered.connect(self._on_area_entered)
 	self.area_exited.connect(self._on_area_exited)
@@ -32,6 +36,8 @@ func _ready():
 	
 	_fuse_ready()
 	
+	_block_ready()
+	
 	
 
 func _process(delta):
@@ -41,13 +47,13 @@ func _process(delta):
 		self.set_position(get_parent().get_local_mouse_position())
 		held = true
 	if out_of_bounds and held:
-		var setback = ((self.get_position() - Vector2(20, 0)).normalized() * 15)
+		var setback = ((self.get_position() - origin_point).normalized() * 15)
 		self.set_position(self.get_position() - setback)
 	if out_of_play and !held:
-		var distance_mod = (self.get_position() - Vector2(20, 0)).length()/50
-		if (self.get_position() - Vector2(20, 0)).length() < 450:
+		var distance_mod = (self.get_position() - origin_point).length()/50
+		if (self.get_position() - origin_point).length() < 450:
 			distance_mod = 2
-		var setback = ((self.get_position() - Vector2(20, 0)).normalized() * speed * delta * distance_mod)
+		var setback = ((self.get_position() - origin_point).normalized() * speed * delta * distance_mod)
 		self.set_position(self.get_position() - setback)
 	if !held and !out_of_play:
 		self.set_position(self.get_position() + (direction * speed * delta))
@@ -55,6 +61,8 @@ func _process(delta):
 			direction = Vector2(randf() - randf(), randf() - randf()).normalized()
 	
 	_fuse_process(delta)
+	
+	_block_process(delta)
 
 
 func _on_mouse_entered():
@@ -89,4 +97,10 @@ func _fuse_process(delta):
 	pass
 
 func _fuse_ready():
+	pass
+
+func _block_ready():
+	pass
+
+func _block_process(delta):
 	pass

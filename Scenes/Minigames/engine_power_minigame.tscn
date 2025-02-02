@@ -1,0 +1,309 @@
+[gd_scene load_steps=19 format=3 uid="uid://wojj03i3tppt"]
+
+[ext_resource type="Script" path="res://Scenes/Minigames/engine_power_minigame.gd" id="1_6lxmx"]
+[ext_resource type="Texture2D" uid="uid://vwr13y6tp2w5" path="res://Sprites/BlockMinigame.png" id="1_girkq"]
+[ext_resource type="Script" path="res://Scenes/Minigames/block.gd" id="3_qi30p"]
+[ext_resource type="Texture2D" uid="uid://dpw1gdk5vv14v" path="res://Sprites/Blocks.png" id="4_byvso"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ao426"]
+size = Vector2(88, 88)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qd6ul"]
+size = Vector2(4957, 1356)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ug7yb"]
+size = Vector2(759, 1674)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wsiko"]
+size = Vector2(2938, 1495)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yih83"]
+size = Vector2(2329, 3088)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_locck"]
+size = Vector2(2130, 3760)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v5qsv"]
+size = Vector2(497, 784.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ow0e7"]
+size = Vector2(1518, 349)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vs3xm"]
+size = Vector2(1568, 303)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dq3fj"]
+size = Vector2(90, 95)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gatub"]
+size = Vector2(100, 106)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f3kb8"]
+size = Vector2(76.5, 74.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a5b2l"]
+size = Vector2(74.5, 78)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ybig"]
+size = Vector2(74, 71)
+
+[node name="EnginePowerMinigame" type="Node2D"]
+script = ExtResource("1_6lxmx")
+
+[node name="Background" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_girkq")
+
+[node name="Block1" type="Area2D" parent="." groups=["PickUpItem"]]
+z_index = 1
+position = Vector2(243, -5)
+script = ExtResource("3_qi30p")
+
+[node name="Sprite2DShadow" type="Sprite2D" parent="Block1"]
+self_modulate = Color(0, 0, 0, 0.72549)
+texture_filter = 1
+position = Vector2(-43, 58)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_byvso")
+hframes = 3
+vframes = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Block1"]
+texture_filter = 1
+position = Vector2(-43, 58)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_byvso")
+hframes = 3
+vframes = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Block1"]
+position = Vector2(-43, 58)
+polygon = PackedVector2Array(-112, -83, 67, -83, 67, 51, 23, 51, 23, -40, -112, -40)
+
+[node name="Block2" type="Area2D" parent="." groups=["PickUpItem"]]
+z_index = 1
+position = Vector2(337, -142)
+script = ExtResource("3_qi30p")
+
+[node name="Sprite2DShadow" type="Sprite2D" parent="Block2"]
+self_modulate = Color(0, 0, 0, 0.72549)
+texture_filter = 1
+position = Vector2(6, 34.4)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_byvso")
+hframes = 3
+vframes = 2
+frame = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="Block2"]
+texture_filter = 1
+position = Vector2(6, 34.4)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_byvso")
+hframes = 3
+vframes = 2
+frame = 1
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Block2"]
+position = Vector2(6, 34.4)
+polygon = PackedVector2Array(-50, -124, -6, -124, -6, -79, 38, -79, 38, 9, -6, 10, -6, 54, -48, 54)
+
+[node name="Block3" type="Area2D" parent="." groups=["PickUpItem"]]
+z_index = 1
+position = Vector2(373, 99)
+script = ExtResource("3_qi30p")
+
+[node name="Sprite2DShadow" type="Sprite2D" parent="Block3"]
+self_modulate = Color(0, 0, 0, 0.72549)
+texture_filter = 1
+position = Vector2(-18, 0)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_byvso")
+hframes = 3
+vframes = 2
+frame = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Block3"]
+texture_filter = 1
+position = Vector2(-18, 0)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_byvso")
+hframes = 3
+vframes = 2
+frame = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Block3"]
+shape = SubResource("RectangleShape2D_ao426")
+
+[node name="Block4" type="Area2D" parent="." groups=["PickUpItem"]]
+z_index = 1
+position = Vector2(221, 183)
+script = ExtResource("3_qi30p")
+
+[node name="Sprite2DShadow" type="Sprite2D" parent="Block4"]
+self_modulate = Color(0, 0, 0, 0.72549)
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_byvso")
+hframes = 3
+vframes = 2
+frame = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Block4"]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_byvso")
+hframes = 3
+vframes = 2
+frame = 3
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Block4"]
+polygon = PackedVector2Array(-27, -44, 62, -44, 62, 44, -72, 44, -72, 1, -27, 1)
+
+[node name="Block5" type="Area2D" parent="." groups=["PickUpItem"]]
+z_index = 1
+position = Vector2(377, 194)
+script = ExtResource("3_qi30p")
+
+[node name="Sprite2DShadow" type="Sprite2D" parent="Block5"]
+self_modulate = Color(0, 0, 0, 0.72549)
+texture_filter = 1
+position = Vector2(-49, 29)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_byvso")
+hframes = 3
+vframes = 2
+frame = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="Block5"]
+texture_filter = 1
+position = Vector2(-49, 29)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_byvso")
+hframes = 3
+vframes = 2
+frame = 4
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Block5"]
+position = Vector2(-49, 29)
+polygon = PackedVector2Array(71, 15, 71, -30, 115, -30, 115, -73, 28, -73, 28, -29, -17, -29, -17, 14)
+
+[node name="Borders" type="Area2D" parent="." groups=["Minigame"]]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders"]
+position = Vector2(408.5, -962)
+shape = SubResource("RectangleShape2D_qd6ul")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Borders"]
+position = Vector2(-893.5, 123)
+shape = SubResource("RectangleShape2D_ug7yb")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Borders"]
+position = Vector2(339, 1040.5)
+shape = SubResource("RectangleShape2D_wsiko")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Borders"]
+position = Vector2(1658.5, 135)
+shape = SubResource("RectangleShape2D_yih83")
+
+[node name="ItemBorder" type="Area2D" parent="." groups=["MinigameItem"]]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ItemBorder"]
+position = Vector2(-1029, 133)
+shape = SubResource("RectangleShape2D_locck")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="ItemBorder"]
+position = Vector2(724.5, 6.75)
+shape = SubResource("RectangleShape2D_v5qsv")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="ItemBorder"]
+position = Vector2(169, 441.5)
+shape = SubResource("RectangleShape2D_ow0e7")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="ItemBorder"]
+position = Vector2(178, -417.5)
+shape = SubResource("RectangleShape2D_vs3xm")
+
+[node name="FinalPositions" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="FinalPositions"]
+texture_filter = 1
+position = Vector2(-120, -57)
+texture = ExtResource("4_byvso")
+hframes = 3
+vframes = 2
+
+[node name="Sprite2D2" type="Sprite2D" parent="FinalPositions"]
+texture_filter = 1
+position = Vector2(-335, 25)
+texture = ExtResource("4_byvso")
+hframes = 3
+vframes = 2
+frame = 1
+
+[node name="Sprite2D3" type="Sprite2D" parent="FinalPositions"]
+texture_filter = 1
+position = Vector2(-200, -45)
+texture = ExtResource("4_byvso")
+hframes = 3
+vframes = 2
+frame = 2
+
+[node name="Sprite2D4" type="Sprite2D" parent="FinalPositions"]
+texture_filter = 1
+position = Vector2(-109, 135)
+texture = ExtResource("4_byvso")
+hframes = 3
+vframes = 2
+frame = 3
+
+[node name="Sprite2D5" type="Sprite2D" parent="FinalPositions"]
+texture_filter = 1
+position = Vector2(-398, 193)
+texture = ExtResource("4_byvso")
+hframes = 3
+vframes = 2
+frame = 4
+
+[node name="Block1Pos" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Block1Pos"]
+position = Vector2(-33, -174.5)
+shape = SubResource("RectangleShape2D_dq3fj")
+
+[node name="Block2Pos" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Block2Pos"]
+position = Vector2(-347, -45)
+shape = SubResource("RectangleShape2D_gatub")
+
+[node name="Block3Pos" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Block3Pos"]
+position = Vector2(-165, -45)
+shape = SubResource("RectangleShape2D_f3kb8")
+
+[node name="Block4Pos" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Block4Pos"]
+position = Vector2(-122, 140)
+shape = SubResource("RectangleShape2D_a5b2l")
+
+[node name="Block5Pos" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Block5Pos"]
+position = Vector2(-301, 136)
+shape = SubResource("RectangleShape2D_2ybig")
+
+[connection signal="mouse_entered" from="Block1Pos" to="." method="_on_block_1_pos_mouse_entered"]
+[connection signal="mouse_exited" from="Block1Pos" to="." method="_on_block_1_pos_mouse_exited"]
+[connection signal="mouse_entered" from="Block2Pos" to="." method="_on_block_2_pos_mouse_entered"]
+[connection signal="mouse_exited" from="Block2Pos" to="." method="_on_block_2_pos_mouse_exited"]
+[connection signal="mouse_entered" from="Block3Pos" to="." method="_on_block_3_pos_mouse_entered"]
+[connection signal="mouse_exited" from="Block3Pos" to="." method="_on_block_3_pos_mouse_exited"]
+[connection signal="mouse_entered" from="Block4Pos" to="." method="_on_block_4_pos_mouse_entered"]
+[connection signal="mouse_exited" from="Block4Pos" to="." method="_on_block_4_pos_mouse_exited"]
+[connection signal="mouse_entered" from="Block5Pos" to="." method="_on_block_5_pos_mouse_entered"]
+[connection signal="mouse_exited" from="Block5Pos" to="." method="_on_block_5_pos_mouse_exited"]

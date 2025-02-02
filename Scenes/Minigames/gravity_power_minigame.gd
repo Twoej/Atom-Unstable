@@ -46,3 +46,4 @@ func _on_fuse_slot_area_exited(area):
 func _on_win_timer_timeout():
 	minigame_complete.emit()
 	self.queue_free()
+	

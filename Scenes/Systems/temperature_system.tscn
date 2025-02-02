@@ -1,7 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://coagv5heiiek5"]
+[gd_scene load_steps=12 format=3 uid="uid://coagv5heiiek5"]
 
 [ext_resource type="Script" path="res://Scenes/Systems/temperature_system.gd" id="1_htx4t"]
 [ext_resource type="Texture2D" uid="uid://bia44hkhf0ly" path="res://Sprites/Temperature.png" id="2_8ung0"]
+[ext_resource type="Texture2D" uid="uid://8ipeqn0roniu" path="res://Sprites/Battery.png" id="3_gu72n"]
+[ext_resource type="Texture2D" uid="uid://8poe0gj6ve34" path="res://Sprites/WarningSymbol.png" id="4_7oe1i"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sob8v"]
 atlas = ExtResource("2_8ung0")
@@ -99,3 +101,26 @@ offset_bottom = -34.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_l8ew2")
+
+[node name="Battery" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(69, 1)
+scale = Vector2(2, 2)
+texture = ExtResource("3_gu72n")
+hframes = 3
+vframes = 2
+
+[node name="BatteryFlashing" type="Timer" parent="."]
+wait_time = 0.3
+
+[node name="Warning" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 1
+position = Vector2(21, -60)
+scale = Vector2(2, 2)
+texture = ExtResource("4_7oe1i")
+
+[node name="WarningFlashing" type="Timer" parent="."]
+wait_time = 0.2
+
+[connection signal="timeout" from="WarningFlashing" to="." method="_on_warning_flashing_timeout"]

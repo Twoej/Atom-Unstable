@@ -10,13 +10,13 @@ var delayed_dying := false
 func _process(_delta):
 	if death_timer_started:
 		$UILayer/DeathWarning/CountDown.set_text(str(int($UILayer/DeathWarning/DeathTimer.get_time_left())))
-		if time_since_last_flash > 13 and $UILayer/DeathWarning/DeathTimer.get_time_left() > 4.5:
+		if time_since_last_flash > 13 and $UILayer/DeathWarning/DeathTimer.get_time_left() > 14:
 			time_since_last_flash = 0
 			if $UILayer/DeathWarning.is_visible():
 				$UILayer/DeathWarning.set_visible(false)
 			else:
 				$UILayer/DeathWarning.set_visible(true)
-		elif $UILayer/DeathWarning/DeathTimer.get_time_left() <= 4:
+		elif $UILayer/DeathWarning/DeathTimer.get_time_left() <= 14:
 			$UILayer/DeathWarning.set_visible(true)
 		time_since_last_flash += 1
 
@@ -32,7 +32,7 @@ func _on_oxygen_down():
 	if death_cause == "none":
 		death_cause = "oxygen"
 		$UILayer/DeathWarning/PowerIndicator.set_text("Power Oxygen!!")
-		$UILayer/DeathWarning/DeathTimer.start(5.5)
+		$UILayer/DeathWarning/DeathTimer.start(15.5)
 		death_timer_started = true
 	else:
 		delayed_dying = true
@@ -65,7 +65,7 @@ func _on_temperature_down():
 	if death_cause == "none":
 		death_cause = "temp"
 		$UILayer/DeathWarning/PowerIndicator.set_text("Power Temperature System!!")
-		$UILayer/DeathWarning/DeathTimer.start(10)
+		$UILayer/DeathWarning/DeathTimer.start(15.5)
 		death_timer_started = true
 	else:
 		delayed_dying = true

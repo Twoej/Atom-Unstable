@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dgwc36s88h5ry"]
+
+[ext_resource type="Script" path="res://Scenes/electron.gd" id="1_l0col"]
+[ext_resource type="Texture2D" uid="uid://b88jth211wbyl" path="res://Sprites/Electron.png" id="1_l0jkn"]
+
+[node name="Electron" type="Node2D"]
+script = ExtResource("1_l0col")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-3, 3)
+scale = Vector2(2, 2)
+texture = ExtResource("1_l0jkn")

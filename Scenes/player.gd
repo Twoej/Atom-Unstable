@@ -28,7 +28,7 @@ var currently_active_minigame: Minigame
 var player_frozen := false
 
 @export var sliding_accel: float
-var sliding_speed: float = 0
+var sliding_speed: float = 0.0
 @export var max_sliding_speed: float
 var slide := false
 
@@ -44,6 +44,8 @@ var temp_light: Node2D
 var jump_cooldown_complete := true
 
 var prev_angle := 0.0
+
+signal minigame_exited()
 
 func _process(delta):
 	if gravity_off:
@@ -82,12 +84,6 @@ func _process(delta):
 	if !is_on_floor() and (downward_velocity.length() < 30) and airborne and ($PlayerSprite.get_current_animation() != "falling"):
 		$PlayerSprite.play("falling")
 	
-	if player_frozen and (currently_active_minigame != null):
-		if self.get_position().distance_to(currently_active_minigame_system.get_position()) > 350:
-			player_frozen = false
-			currently_active_minigame_system = null
-			currently_active_minigame.queue_free()
-			currently_active_minigame = null
 
 func _physics_process(delta):
 	if gravity_off:
@@ -118,20 +114,21 @@ func _physics_process(delta):
 	velocity = right_direction * horizontal_speed		#Uses right direction for current gravity
 	if slide and is_on_floor():
 		velocity += right_direction * sliding_speed
-		if abs(current_angle - prev_angle) < (PI/19 * delta):
+		if abs(current_angle) < (PI/19 * delta):
 			sliding_speed -= sign(current_angle) * sliding_accel
 		else:
 			sliding_speed += sign(current_angle) * sliding_accel
 		if sign(sliding_speed) != sign(current_angle):
 			sliding_speed += sign(current_angle) * sliding_accel
-		if Input.is_action_pressed("move_right") or Input.is_action_pressed("move_left"):
-			sliding_speed -= sign(current_angle * sliding_accel)
 		if abs(sliding_speed) > max_sliding_speed:
 			sliding_speed = max_sliding_speed * sign(current_angle)
-		if sliding_speed == 0:
-			$SliderTimer.start()
-		elif !$SliderTimer.is_stopped():
-			$SliderTimer.stop()
+		if current_angle == prev_angle:
+			sliding_speed = sliding_speed / 2
+		if abs(sliding_speed) < sliding_accel:
+			slide = false
+		if Input.is_action_pressed("move_right") or Input.is_action_pressed("move_left"):
+			sliding_speed -= sign(current_angle * sliding_accel)
+		prev_angle = current_angle
 	#Determines downward velocity, increase the longer player is in air
 	if !is_on_floor():
 		if $AirborneTimer.is_stopped():
@@ -200,10 +197,12 @@ func _on_gravity_system_gravity_powered():
 
 func _on_minigame_active(sibling_system, minigame):
 	currently_active_minigame_system = sibling_system
+	minigame_exited.connect(currently_active_minigame_system._on_minigame_exited)
 	currently_active_minigame = minigame
 	player_frozen = true
 
 func _on_minigame_complete():
+	minigame_exited.disconnect(currently_active_minigame_system._on_minigame_exited)
 	currently_active_minigame_system = null
 	player_frozen = false
 
@@ -238,5 +237,13 @@ func _on_jump_cooldown_timeout():
 	jump_cooldown_complete = true
 
 
-func _on_slider_timer_timeout():
-	slide = false
+func _on_floor_detection_area_entered(area):
+	if area.is_in_group("Floor"):
+		if player_frozen and (currently_active_minigame != null):
+			player_frozen = false
+			minigame_exited.emit()
+			minigame_exited.disconnect(currently_active_minigame_system._on_minigame_exited)
+			currently_active_minigame_system = null
+			currently_active_minigame.queue_free()
+			currently_active_minigame = null
+		

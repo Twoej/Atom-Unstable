@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://ccwwebfjaooye"]
+[gd_scene load_steps=26 format=3 uid="uid://ccwwebfjaooye"]
 
 [ext_resource type="Script" path="res://Scenes/player.gd" id="1_yairi"]
 [ext_resource type="Texture2D" uid="uid://cpll2e8dkv4ns" path="res://Sprites/Player.png" id="2_uesfv"]
@@ -167,6 +167,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_brcr0"]
 size = Vector2(22, 30)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j7h0h"]
+size = Vector2(14, 3)
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_yairi")
 jump_height = 900.0
@@ -210,8 +213,10 @@ one_shot = true
 wait_time = 0.15
 one_shot = true
 
-[node name="SliderTimer" type="Timer" parent="."]
-wait_time = 0.5
+[node name="FloorDetection" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FloorDetection"]
+shape = SubResource("RectangleShape2D_j7h0h")
 
 [connection signal="animation_changed" from="PlayerSprite" to="PlayerSprite" method="_on_animation_changed"]
 [connection signal="timeout" from="RotationAdjustDelay" to="." method="_on_rotation_adjust_delay_timeout"]
@@ -219,4 +224,4 @@ wait_time = 0.5
 [connection signal="timeout" from="IceTimer" to="." method="_on_ice_timer_timeout"]
 [connection signal="timeout" from="LightOutTimer" to="." method="_on_light_out_timer_timeout"]
 [connection signal="timeout" from="JumpCooldown" to="." method="_on_jump_cooldown_timeout"]
-[connection signal="timeout" from="SliderTimer" to="." method="_on_slider_timer_timeout"]
+[connection signal="area_entered" from="FloorDetection" to="." method="_on_floor_detection_area_entered"]

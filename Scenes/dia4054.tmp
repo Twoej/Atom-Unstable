@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dj57yd4h1an5b"]
+
+[ext_resource type="Texture2D" uid="uid://cdf0i7qdlorot" path="res://Sprites/dial .png" id="1_1prwu"]
+[ext_resource type="Script" path="res://Scenes/dial.gd" id="1_lxg20"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_epj44"]
+size = Vector2(20, 40)
+
+[node name="Dial" type="Area2D"]
+script = ExtResource("1_lxg20")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("1_1prwu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_epj44")

@@ -64,11 +64,13 @@ func _on_lights_system_lights_down():
 	var dark = darkness_tscn.instantiate()
 	$RotationalAxis/Ship.add_child(dark)
 	temp_dark = dark
+	$RotationalAxis/Ship/ShipSprite.play("light_off")
 
 
 func _on_lights_system_lights_powered():
 	if temp_dark != null:
 		temp_dark.lights_powered()
+		$RotationalAxis/Ship/ShipSprite.play("light_on")
 		temp_dark = null
 
 

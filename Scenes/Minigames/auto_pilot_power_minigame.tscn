@@ -1,0 +1,67 @@
+[gd_scene load_steps=9 format=3 uid="uid://ci6usrw6fces"]
+
+[ext_resource type="Texture2D" uid="uid://k35u0u0qhnx2" path="res://Sprites/dial game.png" id="1_1yd7k"]
+[ext_resource type="Script" path="res://Scenes/Minigames/auto_pilot_power_minigame.gd" id="1_gien7"]
+[ext_resource type="PackedScene" uid="uid://dj57yd4h1an5b" path="res://Scenes/dial.tscn" id="2_1boq8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dbrpe"]
+size = Vector2(91, 511)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sdoec"]
+size = Vector2(82.5, 511)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o2wca"]
+size = Vector2(40, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0pu1a"]
+size = Vector2(32, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5vf18"]
+size = Vector2(32, 16)
+
+[node name="AutoPilotPowerMinigame" type="Node2D"]
+script = ExtResource("1_gien7")
+dial_tscn = ExtResource("2_1boq8")
+
+[node name="Background" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("1_1yd7k")
+
+[node name="Bounds" type="Area2D" parent="." groups=["Minigame"]]
+
+[node name="Right" type="CollisionShape2D" parent="Bounds"]
+position = Vector2(291, -0.5)
+shape = SubResource("RectangleShape2D_dbrpe")
+
+[node name="Left" type="CollisionShape2D" parent="Bounds"]
+position = Vector2(-284.25, -0.5)
+shape = SubResource("RectangleShape2D_sdoec")
+
+[node name="Green" type="Area2D" parent="."]
+
+[node name="Top" type="CollisionShape2D" parent="Green"]
+position = Vector2(221, -100)
+shape = SubResource("RectangleShape2D_o2wca")
+
+[node name="Middle" type="CollisionShape2D" parent="Green"]
+position = Vector2(1, 8)
+shape = SubResource("RectangleShape2D_0pu1a")
+
+[node name="Bottom" type="CollisionShape2D" parent="Green"]
+position = Vector2(-119, 118)
+shape = SubResource("RectangleShape2D_5vf18")
+
+[node name="WinTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="ControlUI" type="Label" parent="."]
+offset_left = -88.0
+offset_top = 208.0
+offset_right = 79.0
+offset_bottom = 231.0
+text = "Press space, e, or lmb"
+
+[connection signal="area_entered" from="Green" to="." method="_on_green_area_entered"]
+[connection signal="area_exited" from="Green" to="." method="_on_green_area_exited"]
+[connection signal="timeout" from="WinTimer" to="." method="_on_win_timer_timeout"]

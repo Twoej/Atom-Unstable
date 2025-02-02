@@ -1,0 +1,104 @@
+[gd_scene load_steps=14 format=3 uid="uid://di0u2u77yy5sq"]
+
+[ext_resource type="Script" path="res://Scenes/Minigames/temperature_power_minigame.gd" id="1_6ethe"]
+[ext_resource type="Texture2D" uid="uid://b8dugw6t02n2j" path="res://Sprites/MazeGame.png" id="1_hld8u"]
+[ext_resource type="PackedScene" uid="uid://dgwc36s88h5ry" path="res://Scenes/electron.tscn" id="3_qniqt"]
+[ext_resource type="Texture2D" uid="uid://b88jth211wbyl" path="res://Sprites/Electron.png" id="4_gw61h"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rhetq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mjkoc"]
+size = Vector2(208, 175)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jte1v"]
+size = Vector2(72, 172)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nqafe"]
+size = Vector2(340, 72)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5pdnr"]
+size = Vector2(258, 192.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_osb2c"]
+size = Vector2(234, 277)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kg8bp"]
+size = Vector2(84, 233)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_00jm3"]
+size = Vector2(218, 115)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mc4oe"]
+size = Vector2(51, 36)
+
+[node name="TemperaturePowerMinigame" type="Node2D"]
+script = ExtResource("1_6ethe")
+electron_tscn = ExtResource("3_qniqt")
+
+[node name="Background" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("1_hld8u")
+
+[node name="Path" type="Node2D" parent="."]
+position = Vector2(-221, -180)
+
+[node name="Sprite2D" type="Sprite2D" parent="Path"]
+texture_filter = 1
+position = Vector2(-3, 3)
+scale = Vector2(2, 2)
+texture = ExtResource("4_gw61h")
+
+[node name="Area2D" type="Area2D" parent="Path" groups=["Path"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Path/Area2D"]
+shape = SubResource("CircleShape2D_rhetq")
+
+[node name="SaveMarker" type="Timer" parent="."]
+wait_time = 0.4
+autostart = true
+
+[node name="SummonElectron" type="Timer" parent="."]
+wait_time = 0.4
+autostart = true
+
+[node name="Boundary" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundary"]
+position = Vector2(-184, -70.5)
+shape = SubResource("RectangleShape2D_mjkoc")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Boundary"]
+position = Vector2(-275, -186)
+shape = SubResource("RectangleShape2D_jte1v")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Boundary"]
+position = Vector2(-127, -240)
+shape = SubResource("RectangleShape2D_nqafe")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Boundary"]
+position = Vector2(97, -169.25)
+shape = SubResource("RectangleShape2D_5pdnr")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Boundary"]
+position = Vector2(-21, 113.5)
+shape = SubResource("RectangleShape2D_osb2c")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="Boundary"]
+position = Vector2(188, 47.5)
+shape = SubResource("RectangleShape2D_kg8bp")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="Boundary"]
+position = Vector2(165, 264.5)
+shape = SubResource("RectangleShape2D_00jm3")
+
+[node name="Win" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Win"]
+position = Vector2(248.5, 182)
+shape = SubResource("RectangleShape2D_mc4oe")
+
+[connection signal="timeout" from="SaveMarker" to="." method="_on_save_marker_timeout"]
+[connection signal="timeout" from="SummonElectron" to="." method="_on_summon_electron_timeout"]
+[connection signal="area_entered" from="Boundary" to="." method="_on_boundary_area_entered"]
+[connection signal="area_entered" from="Win" to="." method="_on_win_area_entered"]

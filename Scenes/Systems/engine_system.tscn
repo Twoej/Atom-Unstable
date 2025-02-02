@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://cuwg43v4ac7xq"]
+[gd_scene load_steps=11 format=3 uid="uid://cuwg43v4ac7xq"]
 
 [ext_resource type="Script" path="res://Scenes/Systems/engine_system.gd" id="1_ttw2h"]
 [ext_resource type="Texture2D" uid="uid://cv8o3wdycyuo" path="res://Sprites/Engine.png" id="2_tgj23"]
+[ext_resource type="Texture2D" uid="uid://8ipeqn0roniu" path="res://Sprites/Battery.png" id="3_fm37o"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o4qcv"]
 atlas = ExtResource("2_tgj23")
@@ -93,3 +94,14 @@ offset_bottom = -35.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_8vjqh")
+
+[node name="Battery" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(62, 2)
+scale = Vector2(2, 2)
+texture = ExtResource("3_fm37o")
+hframes = 3
+vframes = 2
+
+[node name="BatteryFlashing" type="Timer" parent="."]
+wait_time = 0.3

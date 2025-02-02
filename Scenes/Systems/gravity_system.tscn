@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://pp88115dmrs"]
+[gd_scene load_steps=12 format=3 uid="uid://pp88115dmrs"]
 
 [ext_resource type="Script" path="res://Scenes/Systems/gravity_system.gd" id="1_uylgc"]
 [ext_resource type="Texture2D" uid="uid://ms0s0e4qtgoy" path="res://Sprites/Gravity.png" id="2_ocv2x"]
+[ext_resource type="Texture2D" uid="uid://8ipeqn0roniu" path="res://Sprites/Battery.png" id="3_etg10"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t4g5e"]
 atlas = ExtResource("2_ocv2x")
@@ -91,3 +92,14 @@ label_settings = SubResource("LabelSettings_0t3oc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_06g38")
+
+[node name="Battery" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(67, 12)
+scale = Vector2(2, 2)
+texture = ExtResource("3_etg10")
+hframes = 3
+vframes = 2
+
+[node name="BatteryFlashing" type="Timer" parent="."]
+wait_time = 0.3

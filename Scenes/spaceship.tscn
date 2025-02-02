@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://xiylpl7wm3ey"]
+[gd_scene load_steps=40 format=3 uid="uid://xiylpl7wm3ey"]
 
 [ext_resource type="Script" path="res://Scenes/spaceship.gd" id="1_eua8s"]
 [ext_resource type="PackedScene" uid="uid://ccwwebfjaooye" path="res://Scenes/player.tscn" id="1_xjli7"]
@@ -6,13 +6,101 @@
 [ext_resource type="PackedScene" uid="uid://bpe1ih3y0wj6g" path="res://Scenes/darkness.tscn" id="2_uvkfa"]
 [ext_resource type="PackedScene" uid="uid://b7g0nwgl1bn0p" path="res://Scenes/Systems/oxygen_system.tscn" id="3_hoyif"]
 [ext_resource type="PackedScene" uid="uid://coagv5heiiek5" path="res://Scenes/Systems/temperature_system.tscn" id="4_1apss"]
+[ext_resource type="Texture2D" uid="uid://c775c33ykyemr" path="res://Sprites/Ship.png" id="4_5d823"]
 [ext_resource type="PackedScene" uid="uid://dykqi2yi3h5vn" path="res://Scenes/Minigames/gravity_power_minigame.tscn" id="4_h3nss"]
 [ext_resource type="Texture2D" uid="uid://bxi4aoq1cxt7s" path="res://Sprites/Ice.png" id="4_q366a"]
 [ext_resource type="PackedScene" uid="uid://bp3gnj0jpnmdh" path="res://Scenes/Systems/lights_system.tscn" id="5_1epu1"]
-[ext_resource type="Texture2D" uid="uid://drcmaxdb8iy0w" path="res://Sprites/Temp ship.png" id="5_o5jer"]
+[ext_resource type="Texture2D" uid="uid://c3mmta68bs4sn" path="res://Sprites/Floorless.png" id="5_lk7iq"]
 [ext_resource type="PackedScene" uid="uid://dkfhtdw46dhkc" path="res://Scenes/Systems/auto_pilot_system.tscn" id="7_pf2w2"]
+[ext_resource type="PackedScene" uid="uid://khfdlg2bd3jp" path="res://Scenes/Minigames/oxygen_power_minigame.tscn" id="8_2mwbd"]
 [ext_resource type="PackedScene" uid="uid://byvevf30ds32u" path="res://Scenes/Minigames/light_power_minigame.tscn" id="8_35r3r"]
 [ext_resource type="PackedScene" uid="uid://cuwg43v4ac7xq" path="res://Scenes/Systems/engine_system.tscn" id="9_orkrm"]
+[ext_resource type="PackedScene" uid="uid://di0u2u77yy5sq" path="res://Scenes/Minigames/temperature_power_minigame.tscn" id="11_7x2n5"]
+[ext_resource type="PackedScene" uid="uid://ci6usrw6fces" path="res://Scenes/Minigames/auto_pilot_power_minigame.tscn" id="12_vqvw2"]
+[ext_resource type="PackedScene" uid="uid://wojj03i3tppt" path="res://Scenes/Minigames/engine_power_minigame.tscn" id="17_ep8r2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4lw81"]
+atlas = ExtResource("4_5d823")
+region = Rect2(0, 0, 800, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0c855"]
+atlas = ExtResource("4_5d823")
+region = Rect2(800, 0, 800, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_02tiv"]
+atlas = ExtResource("4_5d823")
+region = Rect2(1600, 0, 800, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fnnbm"]
+atlas = ExtResource("4_5d823")
+region = Rect2(0, 400, 800, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p1s3b"]
+atlas = ExtResource("4_5d823")
+region = Rect2(800, 400, 800, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3tesm"]
+atlas = ExtResource("4_5d823")
+region = Rect2(800, 400, 800, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fymt3"]
+atlas = ExtResource("4_5d823")
+region = Rect2(0, 400, 800, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xfe7v"]
+atlas = ExtResource("4_5d823")
+region = Rect2(1600, 0, 800, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sss47"]
+atlas = ExtResource("4_5d823")
+region = Rect2(800, 0, 800, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bbs6g"]
+atlas = ExtResource("4_5d823")
+region = Rect2(0, 0, 800, 400)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7c6yc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4lw81")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0c855")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_02tiv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fnnbm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p1s3b")
+}],
+"loop": false,
+"name": &"light_off",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3tesm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fymt3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xfe7v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sss47")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bbs6g")
+}],
+"loop": false,
+"name": &"light_on",
+"speed": 3.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6trln"]
 size = Vector2(154, 797)
@@ -27,16 +115,22 @@ size = Vector2(197, 975)
 size = Vector2(1442, 153)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tsh5h"]
-size = Vector2(718.5, 11)
+size = Vector2(729.5, 11)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_shmar"]
-size = Vector2(380, 10.5)
+size = Vector2(294, 10.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2x4x6"]
-size = Vector2(441, 9.5)
+size = Vector2(441.5, 9.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dmci0"]
-size = Vector2(790, 10.5)
+size = Vector2(298, 10.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l6y0r"]
+size = Vector2(460, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wtu7o"]
+size = Vector2(968, 128)
 
 [node name="Spaceship" type="Node2D"]
 script = ExtResource("1_eua8s")
@@ -50,11 +144,12 @@ position = Vector2(489, 514)
 [node name="Ship" type="StaticBody2D" parent="RotationalAxis"]
 position = Vector2(-489, -514)
 
-[node name="ShipSprite" type="Sprite2D" parent="RotationalAxis/Ship"]
+[node name="ShipSprite" type="AnimatedSprite2D" parent="RotationalAxis/Ship"]
 texture_filter = 1
 position = Vector2(532, 512)
 scale = Vector2(2, 2)
-texture = ExtResource("5_o5jer")
+sprite_frames = SubResource("SpriteFrames_7c6yc")
+animation = &"light_off"
 
 [node name="RightWall" type="CollisionShape2D" parent="RotationalAxis/Ship"]
 position = Vector2(1049, 512)
@@ -73,20 +168,24 @@ position = Vector2(563, 160)
 shape = SubResource("RectangleShape2D_bdj2j")
 
 [node name="TopFloor" type="CollisionShape2D" parent="RotationalAxis/Ship"]
-position = Vector2(359.75, 372)
+position = Vector2(365.25, 372)
 shape = SubResource("RectangleShape2D_tsh5h")
 
 [node name="SecondFloor" type="CollisionShape2D" parent="RotationalAxis/Ship"]
-position = Vector2(152, 652.75)
+position = Vector2(109, 652.75)
 shape = SubResource("RectangleShape2D_shmar")
 
 [node name="SecondFloor2" type="CollisionShape2D" parent="RotationalAxis/Ship"]
-position = Vector2(799, 653)
+position = Vector2(798.75, 653)
 shape = SubResource("RectangleShape2D_2x4x6")
 
 [node name="ThirdFloor" type="CollisionShape2D" parent="RotationalAxis/Ship"]
-position = Vector2(639, 513)
+position = Vector2(395, 513)
 shape = SubResource("RectangleShape2D_dmci0")
+
+[node name="ThirdFloor2" type="CollisionShape2D" parent="RotationalAxis/Ship"]
+position = Vector2(936, 513)
+shape = SubResource("RectangleShape2D_l6y0r")
 
 [node name="IceFloors" type="Node2D" parent="RotationalAxis/Ship"]
 visible = false
@@ -145,38 +244,84 @@ texture_filter = 1
 position = Vector2(730, 793)
 texture = ExtResource("4_q366a")
 
+[node name="Floorless1" type="Sprite2D" parent="RotationalAxis/Ship"]
+texture_filter = 1
+position = Vector2(125, 514)
+scale = Vector2(2, 2)
+texture = ExtResource("5_lk7iq")
+hframes = 4
+
+[node name="Floorless2" type="Sprite2D" parent="RotationalAxis/Ship"]
+texture_filter = 1
+position = Vector2(417, 654)
+scale = Vector2(2, 2)
+texture = ExtResource("5_lk7iq")
+hframes = 3
+
+[node name="Floorless3" type="Sprite2D" parent="RotationalAxis/Ship"]
+texture_filter = 1
+position = Vector2(851, 374)
+scale = Vector2(2, 2)
+texture = ExtResource("5_lk7iq")
+hframes = 4
+
+[node name="Floorless4" type="Sprite2D" parent="RotationalAxis/Ship"]
+texture_filter = 1
+position = Vector2(625, 514)
+scale = Vector2(2, 2)
+texture = ExtResource("5_lk7iq")
+hframes = 6
+
 [node name="Systems" type="Node2D" parent="RotationalAxis"]
 position = Vector2(-564, -299)
 
 [node name="GravitySystem" parent="RotationalAxis/Systems" instance=ExtResource("2_tt4xs")]
-position = Vector2(948, 257)
-power_loss_rate = 0.0
+position = Vector2(148, 537)
+power_max = 260.0
 power_minigame_tscn = ExtResource("4_h3nss")
 
 [node name="OxygenSystem" parent="RotationalAxis/Systems" instance=ExtResource("3_hoyif")]
-position = Vector2(706, 244)
-power_loss_rate = 20.0
-power_minigame_tscn = ExtResource("8_35r3r")
+position = Vector2(179, 102)
+power_max = 390.0
+power_minigame_tscn = ExtResource("8_2mwbd")
 
 [node name="TemperatureSystem" parent="RotationalAxis/Systems" instance=ExtResource("4_1apss")]
-position = Vector2(197, 407)
-power_loss_rate = 0.0
-power_minigame_tscn = ExtResource("4_h3nss")
+position = Vector2(802, 549)
+power_max = 455.0
+power_minigame_tscn = ExtResource("11_7x2n5")
 
 [node name="LightsSystem" parent="RotationalAxis/Systems" instance=ExtResource("5_1epu1")]
-position = Vector2(874, 531)
-power_loss_rate = 0.0
-power_minigame_tscn = ExtResource("4_h3nss")
+position = Vector2(824, 391)
+power_max = 170.0
+power_minigame_tscn = ExtResource("8_35r3r")
 
 [node name="AutoPilotSystem" parent="RotationalAxis/Systems" instance=ExtResource("7_pf2w2")]
-position = Vector2(324, 133)
-power_loss_rate = 0.0
-power_minigame_tscn = ExtResource("4_h3nss")
+position = Vector2(972, 272)
+power_max = 260.0
+power_minigame_tscn = ExtResource("12_vqvw2")
 
 [node name="EngineSystem" parent="RotationalAxis/Systems" instance=ExtResource("9_orkrm")]
-position = Vector2(433, 547)
-power_loss_rate = 0.0
-power_minigame_tscn = ExtResource("4_h3nss")
+position = Vector2(126, 406)
+power_max = 170.0
+power_minigame_tscn = ExtResource("17_ep8r2")
+
+[node name="Floors" type="Area2D" parent="RotationalAxis" groups=["Floor"]]
+
+[node name="Top" type="CollisionShape2D" parent="RotationalAxis/Floors"]
+position = Vector2(0, -212)
+shape = SubResource("RectangleShape2D_wtu7o")
+
+[node name="Third" type="CollisionShape2D" parent="RotationalAxis/Floors"]
+position = Vector2(0, -71)
+shape = SubResource("RectangleShape2D_wtu7o")
+
+[node name="Second" type="CollisionShape2D" parent="RotationalAxis/Floors"]
+position = Vector2(-1, 70)
+shape = SubResource("RectangleShape2D_wtu7o")
+
+[node name="Bottom" type="CollisionShape2D" parent="RotationalAxis/Floors"]
+position = Vector2(-1, 209)
+shape = SubResource("RectangleShape2D_wtu7o")
 
 [node name="Player" parent="." instance=ExtResource("1_xjli7")]
 position = Vector2(430, 430)
@@ -187,7 +332,7 @@ speed = 400.0
 jump_height = 10000.0
 jump_time_to_peak = 20.0
 jump_time_to_descent = 16.0
-anti_grav_speed = 200.0
+anti_grav_speed = 150.0
 sliding_accel = 3.0
 max_sliding_speed = 100.0
 slippery_accel = 4.0

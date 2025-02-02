@@ -5,6 +5,7 @@ class_name System extends Area2D
 @export var power_loss_rate: float = 10
 
 @export var power_minigame_tscn: PackedScene
+var minigame_active := false
 
 var prev_power_remaining: float
 
@@ -20,6 +21,8 @@ func _ready():
 	self.area_entered.connect(self._on_area_entered)
 	self.area_exited.connect(self._on_area_exited)
 	
+	$BatteryFlashing.timeout.connect(self._on_battery_flashing_timeout)
+	
 	var anim_start_frame = randi_range(0, 8)
 	$SystemSprite.set_frame(anim_start_frame)
 	$SystemSprite.play()
@@ -29,7 +32,7 @@ func _ready():
 func _process(delta):
 	_decrease_power(delta)
 	#If player interacts while in area, trigger interact function
-	if Input.is_action_just_pressed("interact") and player_in_area:
+	if Input.is_action_just_pressed("interact") and player_in_area and !minigame_active:
 		_interacted()
 	if power_remaining == 0 and prev_power_remaining != 0:
 		_power_depleted()
@@ -41,6 +44,15 @@ func _decrease_power(delta):
 		self.power_remaining -= power_loss_rate * delta
 	if self.power_remaining < 0:
 		power_remaining = 0
+	var battery_frame = 3 - (int)(((power_remaining / power_max) * 100) / 25)
+	if (power_remaining/power_max) < 0.1 and $BatteryFlashing.is_stopped() and power_remaining != 0:
+		$BatteryFlashing.start()
+	if (power_remaining/power_max) >= 0.1:
+		$Battery.set_frame(battery_frame)
+	if power_remaining == 0:
+		$BatteryFlashing.stop()
+		$Battery.set_frame(4)
+		
 	#Updates the label showing the current power remaining
 	if find_child("PowerRemaining") != null:
 		$PowerRemaining.text = str(int(power_remaining))
@@ -54,6 +66,7 @@ func _on_area_exited(area):
 		player_in_area = false
 	
 func _interacted():
+	minigame_active = true
 	var minigame = power_minigame_tscn.instantiate()
 	main.get_child(0).get_child(0).add_child(minigame)
 	minigame.set_sibling_system(self)
@@ -71,3 +84,16 @@ func _connect_signals():
 func _on_minigame_complete():
 	power_remaining = power_max
 	_power_replenished()
+	minigame_active = false
+	
+func _on_minigame_exited():
+	minigame_active = false
+
+func _on_battery_flashing_timeout():
+	if $Battery.get_frame() == 3:
+		$Battery.set_frame(4)
+	elif $Battery.get_frame() == 4:
+		$Battery.set_frame(3)
+	if power_remaining/power_max < 0.05:
+		$BatteryFlashing.stop()
+		$BatteryFlashing.start(0.1)

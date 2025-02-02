@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://dj57yd4h1an5b"]
+
+[ext_resource type="Texture2D" uid="uid://cdf0i7qdlorot" path="res://Sprites/dial .png" id="1_1prwu"]
+[ext_resource type="Script" path="res://Scenes/dial.gd" id="1_lxg20"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_epj44"]
+size = Vector2(20, 40)
+
+[node name="Dial" type="Area2D" groups=["Dial"]]
+script = ExtResource("1_lxg20")
+
+[node name="LockIn" type="Sprite2D" parent="."]
+visible = false
+self_modulate = Color(100, 100, 100, 0.762)
+texture_filter = 1
+scale = Vector2(2.3, 2.3)
+texture = ExtResource("1_1prwu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("1_1prwu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_epj44")
+
+[node name="LockInTimer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="LockInTimer" to="." method="_on_lock_in_timer_timeout"]

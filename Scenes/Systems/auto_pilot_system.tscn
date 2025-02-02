@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://dkfhtdw46dhkc"]
+[gd_scene load_steps=11 format=3 uid="uid://dkfhtdw46dhkc"]
 
 [ext_resource type="Script" path="res://Scenes/Systems/auto_pilot_system.gd" id="1_jihvd"]
 [ext_resource type="Texture2D" uid="uid://upnj3u7vjbon" path="res://Sprites/AutoPilot.png" id="2_cg5oc"]
+[ext_resource type="Texture2D" uid="uid://8ipeqn0roniu" path="res://Sprites/Battery.png" id="3_myjdn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k7q5i"]
 atlas = ExtResource("2_cg5oc")
@@ -106,5 +107,16 @@ shape = SubResource("RectangleShape2D_tulco")
 [node name="ShipAngleCorrection" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
+
+[node name="Battery" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(51, -4)
+scale = Vector2(2, 2)
+texture = ExtResource("3_myjdn")
+hframes = 3
+vframes = 2
+
+[node name="BatteryFlashing" type="Timer" parent="."]
+wait_time = 0.3
 
 [connection signal="timeout" from="ShipAngleCorrection" to="." method="_on_ship_angle_correction_timeout"]
