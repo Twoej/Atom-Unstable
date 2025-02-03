@@ -1,0 +1,105 @@
+[gd_scene load_steps=12 format=3 uid="uid://cv2sd0taqf7nt"]
+
+[ext_resource type="Script" path="res://Scenes/Encounters/alien_encounter.gd" id="1_4v66l"]
+[ext_resource type="Texture2D" uid="uid://bluk5uvtjb8hr" path="res://Sprites/AlienBlink.png" id="2_7kt8q"]
+[ext_resource type="Texture2D" uid="uid://d2rer8uyl08lw" path="res://Sprites/AlienHalfBlink.png" id="3_by10i"]
+[ext_resource type="Texture2D" uid="uid://c0fv40fjetuh1" path="res://Sprites/AlienLeft.png" id="4_fa5ni"]
+[ext_resource type="Texture2D" uid="uid://bgm8f1t1nredd" path="res://Sprites/AlienMiddle.png" id="5_mwlu2"]
+[ext_resource type="Texture2D" uid="uid://dxvbtl5tye1y3" path="res://Sprites/AlienRight.png" id="6_ej8bt"]
+[ext_resource type="Texture2D" uid="uid://cqn6fuxmbu02w" path="res://Sprites/Hand1.png" id="6_s1lnb"]
+[ext_resource type="Texture2D" uid="uid://33qdgbiecku4" path="res://Sprites/Hand2.png" id="7_nsn72"]
+[ext_resource type="Texture2D" uid="uid://dyl3cv4vcxlvv" path="res://Sprites/Hand3.png" id="8_ipwur"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ch35j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_fa5ni")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_by10i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_7kt8q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_by10i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_fa5ni")
+}],
+"loop": false,
+"name": &"left_blink",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_mwlu2")
+}],
+"loop": false,
+"name": &"middle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_ej8bt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_by10i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_7kt8q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_by10i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ej8bt")
+}],
+"loop": false,
+"name": &"right_blink",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_edcwj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_s1lnb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_nsn72")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ipwur")
+}],
+"loop": false,
+"name": &"default",
+"speed": 3.0
+}]
+
+[node name="AlienEncounter" type="Node2D"]
+script = ExtResource("1_4v66l")
+
+[node name="Head" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, 125)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_ch35j")
+animation = &"left_blink"
+
+[node name="Hands" type="AnimatedSprite2D" parent="."]
+visible = false
+z_index = 1
+texture_filter = 1
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_edcwj")
+frame = 2
+frame_progress = 1.0
+
+[node name="PauseBetweenAnimation" type="Timer" parent="."]
+wait_time = 0.7
+one_shot = true
+
+[connection signal="frame_changed" from="Head" to="." method="_on_head_frame_changed"]
+[connection signal="timeout" from="PauseBetweenAnimation" to="." method="_on_pause_between_animation_timeout"]

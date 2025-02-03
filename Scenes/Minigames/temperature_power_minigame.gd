@@ -60,7 +60,8 @@ func _on_boundary_area_entered(area):
 			electrons[i].queue_free()
 		electrons.clear()
 		markers.clear()
-		$Path.set_position(Vector2(-221, -180))
+		if has_node("Path"):
+			$Path.set_position(Vector2(-221, -180))
 		direction = Vector2.RIGHT
 		electron_count = 0
 
@@ -71,5 +72,7 @@ func _on_win_area_entered(area):
 		$SummonElectron.stop()
 		markers.append($Path.get_position())
 		path_complete = true
+		for electron in electrons:
+			electron.set_speed(650)
 		$Path.queue_free()
 		minigame_complete.emit()

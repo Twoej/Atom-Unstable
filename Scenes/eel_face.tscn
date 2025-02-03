@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://78jrssngk1f5"]
+
+[ext_resource type="Texture2D" uid="uid://c68ju1bowbco0" path="res://Sprites/eel face.png" id="1_pny8c"]
+[ext_resource type="Script" path="res://Scenes/eel_face.gd" id="1_q505b"]
+[ext_resource type="PackedScene" uid="uid://bl61bhayqbu0e" path="res://Scenes/main.tscn" id="2_nkn1k"]
+[ext_resource type="AudioStream" uid="uid://c8j5ohalp35gu" path="res://Sounds/eel noise.wav" id="2_xtles"]
+
+[sub_resource type="Gradient" id="Gradient_uyqfe"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_nq8ar"]
+gradient = SubResource("Gradient_uyqfe")
+
+[node name="EelFace" type="Node2D"]
+script = ExtResource("1_q505b")
+main = ExtResource("2_nkn1k")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(1042, 569.5)
+scale = Vector2(33.5625, 18.7969)
+texture = SubResource("GradientTexture2D_nq8ar")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(979, 573)
+scale = Vector2(10, 10)
+texture = ExtResource("1_pny8c")
+
+[node name="SFXEel" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_xtles")
+volume_db = -4.0
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

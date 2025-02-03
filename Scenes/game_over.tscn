@@ -1,14 +1,42 @@
-[gd_scene load_steps=2 format=3 uid="uid://b4sd4w2pqn3n4"]
+[gd_scene load_steps=5 format=3 uid="uid://b4sd4w2pqn3n4"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_m8y3i"]
-font_size = 150
+[ext_resource type="Script" path="res://Scenes/game_over.gd" id="1_1fcuf"]
+[ext_resource type="Texture2D" uid="uid://c8cyfhsl83jqq" path="res://Sprites/GameOverTransparent.png" id="1_ckh0m"]
+[ext_resource type="Texture2D" uid="uid://xm7lv8k1elf" path="res://Sprites/SpaceBackground.png" id="1_p8d1r"]
+[ext_resource type="AudioStream" uid="uid://c8j5ohalp35gu" path="res://Sounds/eel noise.wav" id="4_haurx"]
 
 [node name="GameOver" type="Node2D"]
+script = ExtResource("1_1fcuf")
 
-[node name="Label" type="Label" parent="."]
-offset_left = 512.0
-offset_top = 391.0
-offset_right = 1326.0
-offset_bottom = 596.0
-text = "Game Over"
-label_settings = SubResource("LabelSettings_m8y3i")
+[node name="Background" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(960, 540)
+scale = Vector2(2, 2)
+texture = ExtResource("1_p8d1r")
+
+[node name="Text" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(960, 540)
+scale = Vector2(2, 2)
+texture = ExtResource("1_ckh0m")
+
+[node name="Quit" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 1590.0
+offset_top = 897.0
+offset_right = 1864.0
+offset_bottom = 1025.0
+
+[node name="TryAgain" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 56.0
+offset_top = 897.0
+offset_right = 577.0
+offset_bottom = 1025.0
+
+[node name="SFXEel" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_haurx")
+volume_db = -4.0
+
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="TryAgain" to="." method="_on_try_again_pressed"]

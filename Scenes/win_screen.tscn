@@ -1,0 +1,100 @@
+[gd_scene load_steps=13 format=3 uid="uid://37dfhaa75msh"]
+
+[ext_resource type="Script" path="res://Scenes/win_screen.gd" id="1_o012k"]
+[ext_resource type="Texture2D" uid="uid://vmiwmu71xqhp" path="res://Sprites/Win screen.png" id="1_oit5p"]
+[ext_resource type="AudioStream" uid="uid://bddek2db7t60c" path="res://Music/victory.wav" id="2_exhhv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qa4wi"]
+atlas = ExtResource("1_oit5p")
+region = Rect2(0, 0, 960, 540)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4eedv"]
+atlas = ExtResource("1_oit5p")
+region = Rect2(960, 0, 960, 540)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lq40o"]
+atlas = ExtResource("1_oit5p")
+region = Rect2(1920, 0, 960, 540)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_otyhv"]
+atlas = ExtResource("1_oit5p")
+region = Rect2(0, 540, 960, 540)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nbrft"]
+atlas = ExtResource("1_oit5p")
+region = Rect2(960, 540, 960, 540)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1iok5"]
+atlas = ExtResource("1_oit5p")
+region = Rect2(1920, 540, 960, 540)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ssinm"]
+atlas = ExtResource("1_oit5p")
+region = Rect2(0, 1080, 960, 540)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mjya4"]
+atlas = ExtResource("1_oit5p")
+region = Rect2(960, 1080, 960, 540)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ps7fy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qa4wi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4eedv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lq40o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_otyhv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nbrft")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1iok5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ssinm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mjya4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[node name="WinScreen" type="Node2D"]
+script = ExtResource("1_o012k")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(960, 540)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_ps7fy")
+autoplay = "default"
+
+[node name="MusicWin" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_exhhv")
+
+[node name="Play" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 1442.0
+offset_top = 415.0
+offset_right = 1779.0
+offset_bottom = 662.0
+
+[node name="Quit" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 204.0
+offset_top = 450.0
+offset_right = 492.0
+offset_bottom = 632.0
+
+[connection signal="finished" from="MusicWin" to="." method="_on_music_win_finished"]
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

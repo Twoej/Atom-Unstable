@@ -1,0 +1,51 @@
+[gd_scene load_steps=6 format=3 uid="uid://bb31xbbw70oxs"]
+
+[ext_resource type="Script" path="res://Scenes/title_screen.gd" id="1_e6jlq"]
+[ext_resource type="Texture2D" uid="uid://c3eswru5nketq" path="res://Sprites/TitleScreen.png" id="1_u5061"]
+[ext_resource type="PackedScene" uid="uid://78jrssngk1f5" path="res://Scenes/eel_face.tscn" id="2_4uywf"]
+[ext_resource type="AudioStream" uid="uid://dkar8ru14txlu" path="res://Music/space game title.wav" id="4_vgugx"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_h0eyy"]
+font_size = 25
+
+[node name="TitleScreen" type="Node2D"]
+script = ExtResource("1_e6jlq")
+face = ExtResource("2_4uywf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(960, 540)
+scale = Vector2(2, 2)
+texture = ExtResource("1_u5061")
+
+[node name="Play" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 1425.0
+offset_top = 389.0
+offset_right = 1829.0
+offset_bottom = 718.0
+
+[node name="Quit" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 148.0
+offset_top = 384.0
+offset_right = 553.0
+offset_bottom = 703.0
+
+[node name="MusicTitle" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_vgugx")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 12.0
+offset_top = 8.0
+offset_right = 466.0
+offset_bottom = 157.0
+text = "Programming:                   Josh Toohey
+Art:                                      Emma
+	                                            Ellie Chartrain-Lawton
+Music and SFX:                 Ellie Chartrain-Lawton"
+label_settings = SubResource("LabelSettings_h0eyy")
+
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
+[connection signal="finished" from="MusicTitle" to="." method="_on_music_title_finished"]

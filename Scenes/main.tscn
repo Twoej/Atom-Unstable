@@ -1,28 +1,96 @@
-[gd_scene load_steps=9 format=3 uid="uid://bl61bhayqbu0e"]
+[gd_scene load_steps=27 format=3 uid="uid://bl61bhayqbu0e"]
 
 [ext_resource type="Script" path="res://Scenes/main.gd" id="1_2mhm4"]
 [ext_resource type="PackedScene" uid="uid://xiylpl7wm3ey" path="res://Scenes/spaceship.tscn" id="2_e1k1b"]
-[ext_resource type="PackedScene" uid="uid://b4sd4w2pqn3n4" path="res://Scenes/game_over.tscn" id="2_oojck"]
+[ext_resource type="PackedScene" uid="uid://b4sd4w2pqn3n4" path="res://Scenes/game_over.tscn" id="2_v1xb0"]
+[ext_resource type="PackedScene" uid="uid://37dfhaa75msh" path="res://Scenes/win_screen.tscn" id="3_wa0in"]
+[ext_resource type="PackedScene" uid="uid://cv2sd0taqf7nt" path="res://Scenes/Encounters/alien_encounter.tscn" id="3_x1p17"]
+[ext_resource type="PackedScene" uid="uid://cgnr6efrarcp8" path="res://Scenes/Encounters/boarder_ship.tscn" id="4_8mbem"]
 [ext_resource type="PackedScene" uid="uid://difrimtwsfxbv" path="res://Scenes/progress_bar.tscn" id="4_n5wht"]
+[ext_resource type="PackedScene" uid="uid://ixxwodjm2870" path="res://Scenes/Encounters/eel_encounter.tscn" id="5_4ug2k"]
 [ext_resource type="Texture2D" uid="uid://xm7lv8k1elf" path="res://Sprites/SpaceBackground.png" id="5_v7ja7"]
+[ext_resource type="PackedScene" uid="uid://dutg11rtryej4" path="res://Scenes/Encounters/meteorite.tscn" id="6_wpfpg"]
+[ext_resource type="PackedScene" uid="uid://c433rrcmug7u6" path="res://Scenes/boss_battle.tscn" id="7_84qyr"]
+[ext_resource type="Texture2D" uid="uid://bredaigh5lgju" path="res://Sprites/planet 1.png" id="10_iwi71"]
+[ext_resource type="Texture2D" uid="uid://6uqgovxab4ik" path="res://Sprites/plannet 2.png" id="11_qs775"]
+[ext_resource type="Texture2D" uid="uid://c0nmb23h2cypl" path="res://Sprites/planet 3.png" id="12_sgtdq"]
+[ext_resource type="Texture2D" uid="uid://c8xth20vl68by" path="res://Sprites/star.png" id="13_k0yma"]
+[ext_resource type="AudioStream" uid="uid://dc5tmg2m1eogw" path="res://Music/main song.wav" id="15_46da4"]
+[ext_resource type="AudioStream" uid="uid://qnnuoraqiryk" path="res://Music/boss slow intro.wav" id="16_58wys"]
+[ext_resource type="AudioStream" uid="uid://efgsntogkjy2" path="res://Music/boss fart part.wav" id="17_hvqxa"]
+[ext_resource type="AudioStream" uid="uid://cu60jcvop3bhl" path="res://Sounds/alarm.wav" id="19_a5buw"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f520k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_iwi71")
+}],
+"loop": false,
+"name": &"0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_qs775")
+}],
+"loop": false,
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_sgtdq")
+}],
+"loop": false,
+"name": &"2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_k0yma")
+}],
+"loop": false,
+"name": &"3",
+"speed": 5.0
+}]
+
+[sub_resource type="LabelSettings" id="LabelSettings_e0adb"]
+font_size = 30
+
+[sub_resource type="LabelSettings" id="LabelSettings_t15kf"]
+font_size = 30
 
 [sub_resource type="LabelSettings" id="LabelSettings_qdhcp"]
-font_size = 150
+font_size = 130
 font_color = Color(0.941176, 0.0980392, 0, 1)
 outline_size = 20
 outline_color = Color(0.333333, 0.2, 0.811765, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_1kt3j"]
-font_size = 100
+font_size = 75
 font_color = Color(0.941176, 0.0980392, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_g2jlm"]
 font_size = 100
 font_color = Color(0.941176, 0.0980392, 0, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_5jgov"]
+font_size = 35
+
 [node name="Main" type="Node2D"]
 script = ExtResource("1_2mhm4")
-game_over_tscn = ExtResource("2_oojck")
+game_over_tscn = ExtResource("2_v1xb0")
+win_screen_tscn = ExtResource("3_wa0in")
+encounters = Array[PackedScene]([ExtResource("3_x1p17"), ExtResource("4_8mbem"), ExtResource("5_4ug2k"), ExtResource("6_wpfpg")])
+boss_battle_tscn = ExtResource("7_84qyr")
+
+[node name="VisualDetail" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-356, -42)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_f520k")
+animation = &"0"
 
 [node name="Spaceship" parent="." instance=ExtResource("2_e1k1b")]
 
@@ -34,42 +102,63 @@ game_over_tscn = ExtResource("2_oojck")
 
 [node name="InteractControl" type="Label" parent="UILayer/Controls"]
 visible = false
-offset_left = 1729.0
-offset_top = 943.0
-offset_right = 1877.0
-offset_bottom = 966.0
+offset_left = 1611.0
+offset_top = 955.0
+offset_right = 1888.0
+offset_bottom = 997.0
 text = "Press 'e' to interact"
+label_settings = SubResource("LabelSettings_e0adb")
+
+[node name="ShootControl" type="Label" parent="UILayer/Controls"]
+visible = false
+offset_left = 1610.0
+offset_top = 899.0
+offset_right = 1894.0
+offset_bottom = 941.0
+text = "Press 'lmb' to shoot"
+label_settings = SubResource("LabelSettings_t15kf")
 
 [node name="DeathWarning" type="Node2D" parent="UILayer"]
 visible = false
 
 [node name="DeathImminent" type="Label" parent="UILayer/DeathWarning"]
-offset_right = 1923.0
-offset_bottom = 612.0
+offset_left = -394.0
+offset_top = 572.0
+offset_right = 1529.0
+offset_bottom = 1184.0
 text = "Death Imminent"
 label_settings = SubResource("LabelSettings_qdhcp")
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="PowerIndicator" type="Label" parent="UILayer/DeathWarning"]
-offset_left = 274.0
-offset_top = 392.0
-offset_right = 1670.0
-offset_bottom = 529.0
+offset_left = -166.0
+offset_top = 938.0
+offset_right = 1230.0
+offset_bottom = 1075.0
 text = "Power Oxygen!!"
 label_settings = SubResource("LabelSettings_1kt3j")
 horizontal_alignment = 1
 
 [node name="CountDown" type="Label" parent="UILayer/DeathWarning"]
-offset_left = 910.0
-offset_top = 534.0
-offset_right = 967.0
-offset_bottom = 671.0
+offset_left = 1076.0
+offset_top = 924.0
+offset_right = 1133.0
+offset_bottom = 1061.0
 label_settings = SubResource("LabelSettings_g2jlm")
 
 [node name="DeathTimer" type="Timer" parent="UILayer/DeathWarning"]
 wait_time = 5.5
 one_shot = true
+
+[node name="BossLabel" type="Label" parent="UILayer"]
+visible = false
+offset_left = 866.0
+offset_top = -7.0
+offset_right = 1151.0
+offset_bottom = 48.0
+text = "Escape the Eel!"
+label_settings = SubResource("LabelSettings_5jgov")
 
 [node name="SpaceBackground" type="Sprite2D" parent="."]
 z_index = -1
@@ -78,4 +167,38 @@ position = Vector2(960, 540)
 scale = Vector2(2, 2)
 texture = ExtResource("5_v7ja7")
 
+[node name="RandomEncounterTimer" type="Timer" parent="."]
+wait_time = 30.0
+one_shot = true
+autostart = true
+
+[node name="VisualDetailTimer" type="Timer" parent="."]
+wait_time = 20.0
+one_shot = true
+autostart = true
+
+[node name="MusicMain" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("15_46da4")
+
+[node name="MusicChangeTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="MusicBoss" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("16_58wys")
+
+[node name="MusicBoss2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("17_hvqxa")
+
+[node name="SFXAlarm" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("19_a5buw")
+volume_db = -4.0
+
+[connection signal="boss_time" from="ProgressBar" to="." method="_on_progress_bar_boss_time"]
+[connection signal="win" from="ProgressBar" to="." method="_on_progress_bar_win"]
 [connection signal="timeout" from="UILayer/DeathWarning/DeathTimer" to="." method="_on_death_timer_timeout"]
+[connection signal="timeout" from="RandomEncounterTimer" to="." method="_on_random_encounter_timer_timeout"]
+[connection signal="timeout" from="VisualDetailTimer" to="." method="_on_visual_detail_timer_timeout"]
+[connection signal="finished" from="MusicMain" to="." method="_on_music_main_finished"]
+[connection signal="timeout" from="MusicChangeTimer" to="." method="_on_music_change_timer_timeout"]
+[connection signal="finished" from="MusicBoss" to="." method="_on_music_boss_finished"]
+[connection signal="finished" from="MusicBoss2" to="." method="_on_music_boss_2_finished"]

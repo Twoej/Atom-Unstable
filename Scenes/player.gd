@@ -47,7 +47,25 @@ var prev_angle := 0.0
 
 signal minigame_exited()
 
+var has_gun := false
+signal gun_returned()
+var gun_rack: System
+@export var bullet_tscn: PackedScene
+
 func _process(delta):
+	if Input.is_action_just_pressed("click") and has_gun and !gravity_off and !player_frozen:
+		$SFXShoot.play()
+		var bullet = bullet_tscn.instantiate()
+		var facing: int
+		if $PlayerSprite.is_flipped_h():
+			facing = -1
+		else:
+			facing = 1
+		bullet.direction = facing * right_direction
+		bullet.position = self.get_position()
+		get_parent().add_child(bullet)
+	if has_gun:
+		$GunMeter.set_value(($GunTimer.get_time_left() / 20) * 100)
 	if gravity_off:
 		if anti_grav_direction != Vector2.ZERO:
 			self.rotation = anti_grav_direction.angle() + PI/2
@@ -83,6 +101,8 @@ func _process(delta):
 	#If the player is airborne and at peak of jump and not already in the falling state play the falling animation
 	if !is_on_floor() and (downward_velocity.length() < 30) and airborne and ($PlayerSprite.get_current_animation() != "falling"):
 		$PlayerSprite.play("falling")
+		
+	
 	
 
 func _physics_process(delta):
@@ -144,6 +164,7 @@ func _physics_process(delta):
 		air_time_gravity = false
 	#Handles jump
 	if Input.is_action_just_pressed("jump") and is_on_floor() and !player_frozen and jump_cooldown_complete:
+		$SFXJump.play()
 		downward_velocity = (jump_velocity * gravity_direction)
 		$PlayerSprite.play("jump_start")
 		$JumpCooldown.start()
@@ -197,7 +218,6 @@ func _on_gravity_system_gravity_powered():
 
 func _on_minigame_active(sibling_system, minigame):
 	currently_active_minigame_system = sibling_system
-	print("here1")
 	minigame_exited.connect(currently_active_minigame_system._on_minigame_exited)
 	currently_active_minigame = minigame
 	player_frozen = true
@@ -247,4 +267,40 @@ func _on_floor_detection_area_entered(area):
 			currently_active_minigame_system = null
 			currently_active_minigame.queue_free()
 			currently_active_minigame = null
+		
+
+func _on_gun_rack_give_gun(gun_rack: System):
+	has_gun = true
+	$GunTimer.start()
+	$GunMeter.set_visible(true)
+	gun_returned.connect(gun_rack._on_player_gun_returned)
+	self.gun_rack = gun_rack
+
+
+func _on_gun_timer_timeout():
+	has_gun = false
+	gun_returned.emit()
+	gun_returned.disconnect(gun_rack._on_player_gun_returned)
+	self.gun_rack = null
+	$GunMeter.set_visible(false)
+
+func _on_eel_attack():
+	$ShockSprite.set_visible(true)
+	$ShockSprite.play("default")
+	$ShockTimer.start(4)
+	$SFXBuzzWarning.play()
+
+
+func _on_shock_timer_timeout():
+	if !player_frozen:
+		$ShockSprite.set_scale(Vector2(2, 2))
+		player_frozen = true
+		$ShockTimer.start(2)
+		$SFXStun.play()
+	elif player_frozen:
+		$ShockSprite.set_visible(false)
+		$ShockSprite.set_scale(Vector2(1, 1))
+		$ShockSprite.stop()
+		$ShockSprite.set_frame(0)
+		player_frozen = false
 		

@@ -32,9 +32,10 @@ func _process(_delta):
 			dials[rows_complete].set_velocity(0)
 			rows_complete += 1
 		elif rows_complete < 3:
-			dials[rows_complete].queue_free()
-			dials.remove_at(rows_complete)
-			$ResetTimer.start()
+			if rows_complete < dials.size():
+				dials[rows_complete].queue_free()
+				dials.remove_at(rows_complete)
+				$ResetTimer.start()
 
 func _on_green_area_entered(area):
 	if area.is_in_group("Dial"):

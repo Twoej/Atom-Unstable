@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cwftw76gk1pum"
-path="res://.godot/imported/eel.png-79fb1f9043b793790c8f407b06fb30b9.ctex"
+uid="uid://ct8fsyxbai0wl"
+path="res://.godot/imported/Eel.png-ea9274275fc2011a40769f02099079a6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/eel.png"
-dest_files=["res://.godot/imported/eel.png-79fb1f9043b793790c8f407b06fb30b9.ctex"]
+source_file="res://Sprites/Eel.png"
+dest_files=["res://.godot/imported/Eel.png-ea9274275fc2011a40769f02099079a6.ctex"]
 
 [params]
 

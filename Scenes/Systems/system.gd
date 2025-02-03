@@ -13,6 +13,13 @@ var prev_power_remaining: float
 
 var player_in_area = false
 
+var boarder_position: Vector2
+var boarded := false
+
+var eel := false
+
+var zeroed := false
+
 func _ready():
 	#Connecting to display HUD indicating interact button
 	self.area_entered.connect(main._interact_control)
@@ -36,7 +43,20 @@ func _process(delta):
 		_interacted()
 	if power_remaining == 0 and prev_power_remaining != 0:
 		_power_depleted()
+		$SystemSprite.pause()
 	prev_power_remaining = power_remaining
+	
+	if !has_node("Boarder") and !boarded:
+		boarded = false
+	if has_node("Boarder") and !boarded:
+		$Boarder.set_position(boarder_position)
+		$Boarder/AnimatedSprite2D.play("default")
+		boarded = true
+	if has_node("Boarded"):
+		if boarded and !$Boarder/AnimatedSprite2D.is_playing() and $Boarder/AnimatedSprite2D.get_animation() == "default":
+			$Boarder/AnimatedSprite2D.play("pull_energy")
+	if boarded or eel:
+		_decrease_power(delta)
 
 #General function that runs every frame to decrease power
 func _decrease_power(delta):
@@ -48,14 +68,11 @@ func _decrease_power(delta):
 	if (power_remaining/power_max) < 0.1 and $BatteryFlashing.is_stopped() and power_remaining != 0:
 		$BatteryFlashing.start()
 	if (power_remaining/power_max) >= 0.1:
-		$Battery.set_frame(battery_frame)
+		if battery_frame >= 0:
+			$Battery.set_frame(battery_frame)
 	if power_remaining == 0:
 		$BatteryFlashing.stop()
 		$Battery.set_frame(4)
-		
-	#Updates the label showing the current power remaining
-	if find_child("PowerRemaining") != null:
-		$PowerRemaining.text = str(int(power_remaining))
 
 func _on_area_entered(area):
 	if area.is_in_group("Player"):
@@ -68,7 +85,7 @@ func _on_area_exited(area):
 func _interacted():
 	minigame_active = true
 	var minigame = power_minigame_tscn.instantiate()
-	main.get_child(0).get_child(0).add_child(minigame)
+	main.get_node("Spaceship").get_child(0).add_child(minigame)
 	minigame.set_sibling_system(self)
 	minigame.set_position(Vector2(960, 540))
 
@@ -84,6 +101,11 @@ func _connect_signals():
 func _on_minigame_complete():
 	power_remaining = power_max
 	_power_replenished()
+	if zeroed:
+		$ShockSprite.set_visible(false)
+		$ShockSprite.stop()
+		zeroed = false
+	$SystemSprite.play()
 	minigame_active = false
 	
 func _on_minigame_exited():
@@ -97,3 +119,24 @@ func _on_battery_flashing_timeout():
 	if power_remaining/power_max < 0.05:
 		$BatteryFlashing.stop()
 		$BatteryFlashing.start(0.1)
+
+func eel_attack_on():
+	eel = true
+	$ShockSprite.set_visible(true)
+	$ShockSprite.play("default")
+
+func eel_attack_off():
+	eel = false
+	$ShockSprite.set_visible(false)
+	$ShockSprite.stop()
+
+func make_zero():
+	power_remaining = 0
+	_decrease_power(1/60)
+	$ShockSprite.set_visible(true)
+	$ShockSprite.play("default")
+	zeroed = true
+	
+func make_full():
+	power_remaining = power_max
+	_decrease_power(1/60)

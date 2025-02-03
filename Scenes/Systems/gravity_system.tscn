@@ -1,8 +1,38 @@
-[gd_scene load_steps=12 format=3 uid="uid://pp88115dmrs"]
+[gd_scene load_steps=16 format=3 uid="uid://pp88115dmrs"]
 
 [ext_resource type="Script" path="res://Scenes/Systems/gravity_system.gd" id="1_uylgc"]
+[ext_resource type="Texture2D" uid="uid://dkraxfhyqqbij" path="res://Sprites/GravityElectricity.png" id="2_7tr3d"]
 [ext_resource type="Texture2D" uid="uid://ms0s0e4qtgoy" path="res://Sprites/Gravity.png" id="2_ocv2x"]
 [ext_resource type="Texture2D" uid="uid://8ipeqn0roniu" path="res://Sprites/Battery.png" id="3_etg10"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g11a2"]
+atlas = ExtResource("2_7tr3d")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x4mmd"]
+atlas = ExtResource("2_7tr3d")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mwbkb"]
+atlas = ExtResource("2_7tr3d")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hxtqd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g11a2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x4mmd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mwbkb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t4g5e"]
 atlas = ExtResource("2_ocv2x")
@@ -68,27 +98,24 @@ animations = [{
 "speed": 4.0
 }]
 
-[sub_resource type="LabelSettings" id="LabelSettings_0t3oc"]
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_06g38"]
 size = Vector2(90, 72)
 
 [node name="GravitySystem" type="Area2D"]
 script = ExtResource("1_uylgc")
 
+[node name="ShockSprite" type="AnimatedSprite2D" parent="."]
+visible = false
+texture_filter = 1
+position = Vector2(-11, 2)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_hxtqd")
+
 [node name="SystemSprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 position = Vector2(-11, 2)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_ivlxf")
-
-[node name="PowerRemaining" type="Label" parent="."]
-texture_filter = 1
-offset_left = -18.0
-offset_top = -66.0
-offset_right = 22.0
-offset_bottom = -43.0
-label_settings = SubResource("LabelSettings_0t3oc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_06g38")

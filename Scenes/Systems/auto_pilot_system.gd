@@ -4,6 +4,9 @@ signal auto_pilot_down()
 signal auto_pilot_powered()
 signal ship_angle_correction_timeout()
 
+func _connect_signals():
+	boarder_position = Vector2(-61, -2)
+
 func _power_depleted():
 	auto_pilot_down.emit()
 

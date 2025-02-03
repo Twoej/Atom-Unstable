@@ -36,16 +36,16 @@ size = Vector2(1568, 303)
 size = Vector2(90, 95)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gatub"]
-size = Vector2(100, 106)
+size = Vector2(159, 164)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f3kb8"]
-size = Vector2(76.5, 74.5)
+size = Vector2(134, 147)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a5b2l"]
-size = Vector2(74.5, 78)
+size = Vector2(119, 115)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2ybig"]
-size = Vector2(74, 71)
+size = Vector2(119, 127)
 
 [node name="EnginePowerMinigame" type="Node2D"]
 script = ExtResource("1_6lxmx")
@@ -56,7 +56,7 @@ texture = ExtResource("1_girkq")
 
 [node name="Block1" type="Area2D" parent="." groups=["PickUpItem"]]
 z_index = 1
-position = Vector2(243, -5)
+position = Vector2(239, -147)
 script = ExtResource("3_qi30p")
 
 [node name="Sprite2DShadow" type="Sprite2D" parent="Block1"]
@@ -82,7 +82,7 @@ polygon = PackedVector2Array(-112, -83, 67, -83, 67, 51, 23, 51, 23, -40, -112, 
 
 [node name="Block2" type="Area2D" parent="." groups=["PickUpItem"]]
 z_index = 1
-position = Vector2(337, -142)
+position = Vector2(358, -92)
 script = ExtResource("3_qi30p")
 
 [node name="Sprite2DShadow" type="Sprite2D" parent="Block2"]
@@ -110,7 +110,7 @@ polygon = PackedVector2Array(-50, -124, -6, -124, -6, -79, 38, -79, 38, 9, -6, 1
 
 [node name="Block3" type="Area2D" parent="." groups=["PickUpItem"]]
 z_index = 1
-position = Vector2(373, 99)
+position = Vector2(158, 38)
 script = ExtResource("3_qi30p")
 
 [node name="Sprite2DShadow" type="Sprite2D" parent="Block3"]
@@ -137,7 +137,7 @@ shape = SubResource("RectangleShape2D_ao426")
 
 [node name="Block4" type="Area2D" parent="." groups=["PickUpItem"]]
 z_index = 1
-position = Vector2(221, 183)
+position = Vector2(177, 164)
 script = ExtResource("3_qi30p")
 
 [node name="Sprite2DShadow" type="Sprite2D" parent="Block4"]
@@ -162,7 +162,7 @@ polygon = PackedVector2Array(-27, -44, 62, -44, 62, 44, -72, 44, -72, 1, -27, 1)
 
 [node name="Block5" type="Area2D" parent="." groups=["PickUpItem"]]
 z_index = 1
-position = Vector2(377, 194)
+position = Vector2(374, 182)
 script = ExtResource("3_qi30p")
 
 [node name="Sprite2DShadow" type="Sprite2D" parent="Block5"]
@@ -281,25 +281,25 @@ shape = SubResource("RectangleShape2D_dq3fj")
 [node name="Block2Pos" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Block2Pos"]
-position = Vector2(-347, -45)
+position = Vector2(-344.5, -46)
 shape = SubResource("RectangleShape2D_gatub")
 
 [node name="Block3Pos" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Block3Pos"]
-position = Vector2(-165, -45)
+position = Vector2(-165, -45.5)
 shape = SubResource("RectangleShape2D_f3kb8")
 
 [node name="Block4Pos" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Block4Pos"]
-position = Vector2(-122, 140)
+position = Vector2(-121.5, 135.5)
 shape = SubResource("RectangleShape2D_a5b2l")
 
 [node name="Block5Pos" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Block5Pos"]
-position = Vector2(-301, 136)
+position = Vector2(-301.5, 134.5)
 shape = SubResource("RectangleShape2D_2ybig")
 
 [node name="WinTimer" type="Timer" parent="."]

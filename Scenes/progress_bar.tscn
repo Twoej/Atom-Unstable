@@ -1,17 +1,24 @@
-[gd_scene load_steps=2 format=3 uid="uid://difrimtwsfxbv"]
+[gd_scene load_steps=4 format=3 uid="uid://difrimtwsfxbv"]
 
 [ext_resource type="Script" path="res://Scenes/progress_bar.gd" id="1_6uw6d"]
+[ext_resource type="Texture2D" uid="uid://bqh6jmki545ay" path="res://Sprites/prog bar empty.png" id="2_vlswh"]
+[ext_resource type="Texture2D" uid="uid://mie74wq0vtu2" path="res://Sprites/prog bar full.png" id="3_3lwer"]
 
 [node name="ProgressBar" type="Node2D"]
 script = ExtResource("1_6uw6d")
 
-[node name="ProgressBar" type="ProgressBar" parent="."]
-offset_left = 274.0
-offset_top = 55.0
-offset_right = 1694.0
-offset_bottom = 82.0
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+texture_filter = 1
+offset_left = 607.0
+offset_top = 39.0
+offset_right = 1367.0
+offset_bottom = 79.0
+texture_under = ExtResource("2_vlswh")
+texture_progress = ExtResource("3_3lwer")
 
 [node name="GameTime" type="Timer" parent="."]
-wait_time = 300.0
+wait_time = 150.0
 one_shot = true
 autostart = true
+
+[connection signal="timeout" from="GameTime" to="." method="_on_game_time_timeout"]

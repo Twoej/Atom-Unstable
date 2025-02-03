@@ -1,9 +1,10 @@
-[gd_scene load_steps=40 format=3 uid="uid://xiylpl7wm3ey"]
+[gd_scene load_steps=43 format=3 uid="uid://xiylpl7wm3ey"]
 
 [ext_resource type="Script" path="res://Scenes/spaceship.gd" id="1_eua8s"]
 [ext_resource type="PackedScene" uid="uid://ccwwebfjaooye" path="res://Scenes/player.tscn" id="1_xjli7"]
 [ext_resource type="PackedScene" uid="uid://pp88115dmrs" path="res://Scenes/Systems/gravity_system.tscn" id="2_tt4xs"]
 [ext_resource type="PackedScene" uid="uid://bpe1ih3y0wj6g" path="res://Scenes/darkness.tscn" id="2_uvkfa"]
+[ext_resource type="PackedScene" uid="uid://1f670xxyte6h" path="res://Scenes/Encounters/boarder.tscn" id="3_8cxjh"]
 [ext_resource type="PackedScene" uid="uid://b7g0nwgl1bn0p" path="res://Scenes/Systems/oxygen_system.tscn" id="3_hoyif"]
 [ext_resource type="PackedScene" uid="uid://coagv5heiiek5" path="res://Scenes/Systems/temperature_system.tscn" id="4_1apss"]
 [ext_resource type="Texture2D" uid="uid://c775c33ykyemr" path="res://Sprites/Ship.png" id="4_5d823"]
@@ -18,6 +19,8 @@
 [ext_resource type="PackedScene" uid="uid://di0u2u77yy5sq" path="res://Scenes/Minigames/temperature_power_minigame.tscn" id="11_7x2n5"]
 [ext_resource type="PackedScene" uid="uid://ci6usrw6fces" path="res://Scenes/Minigames/auto_pilot_power_minigame.tscn" id="12_vqvw2"]
 [ext_resource type="PackedScene" uid="uid://wojj03i3tppt" path="res://Scenes/Minigames/engine_power_minigame.tscn" id="17_ep8r2"]
+[ext_resource type="PackedScene" uid="uid://dxchhx3sto6of" path="res://Scenes/Systems/gun_rack.tscn" id="19_jrlcq"]
+[ext_resource type="AudioStream" uid="uid://drcl85egskbmt" path="res://Sounds/ice.wav" id="21_ppceu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4lw81"]
 atlas = ExtResource("4_5d823")
@@ -135,6 +138,7 @@ size = Vector2(968, 128)
 [node name="Spaceship" type="Node2D"]
 script = ExtResource("1_eua8s")
 darkness_tscn = ExtResource("2_uvkfa")
+robot_tscn = ExtResource("3_8cxjh")
 
 [node name="MinigameLayer" type="CanvasLayer" parent="."]
 
@@ -272,38 +276,81 @@ scale = Vector2(2, 2)
 texture = ExtResource("5_lk7iq")
 hframes = 6
 
+[node name="BulletWall" type="Area2D" parent="RotationalAxis/Ship" groups=["BulletDestroy"]]
+
+[node name="RightWall" type="CollisionShape2D" parent="RotationalAxis/Ship/BulletWall"]
+position = Vector2(1049, 512)
+shape = SubResource("RectangleShape2D_6trln")
+
+[node name="Floor" type="CollisionShape2D" parent="RotationalAxis/Ship/BulletWall"]
+position = Vector2(534, 858)
+shape = SubResource("RectangleShape2D_85stq")
+
+[node name="LeftWall" type="CollisionShape2D" parent="RotationalAxis/Ship/BulletWall"]
+position = Vector2(-94, 541.5)
+shape = SubResource("RectangleShape2D_tysn6")
+
+[node name="Ceiling" type="CollisionShape2D" parent="RotationalAxis/Ship/BulletWall"]
+position = Vector2(563, 160)
+shape = SubResource("RectangleShape2D_bdj2j")
+
+[node name="TopFloor" type="CollisionShape2D" parent="RotationalAxis/Ship/BulletWall"]
+position = Vector2(365.25, 372)
+shape = SubResource("RectangleShape2D_tsh5h")
+
+[node name="SecondFloor" type="CollisionShape2D" parent="RotationalAxis/Ship/BulletWall"]
+position = Vector2(109, 652.75)
+shape = SubResource("RectangleShape2D_shmar")
+
+[node name="SecondFloor2" type="CollisionShape2D" parent="RotationalAxis/Ship/BulletWall"]
+position = Vector2(798.75, 653)
+shape = SubResource("RectangleShape2D_2x4x6")
+
+[node name="ThirdFloor" type="CollisionShape2D" parent="RotationalAxis/Ship/BulletWall"]
+position = Vector2(395, 513)
+shape = SubResource("RectangleShape2D_dmci0")
+
+[node name="ThirdFloor2" type="CollisionShape2D" parent="RotationalAxis/Ship/BulletWall"]
+position = Vector2(936, 513)
+shape = SubResource("RectangleShape2D_l6y0r")
+
 [node name="Systems" type="Node2D" parent="RotationalAxis"]
 position = Vector2(-564, -299)
 
 [node name="GravitySystem" parent="RotationalAxis/Systems" instance=ExtResource("2_tt4xs")]
-position = Vector2(148, 537)
-power_max = 260.0
+position = Vector2(208, 536)
+power_max = 312.0
 power_minigame_tscn = ExtResource("4_h3nss")
 
 [node name="OxygenSystem" parent="RotationalAxis/Systems" instance=ExtResource("3_hoyif")]
 position = Vector2(179, 102)
-power_max = 390.0
+power_max = 468.0
 power_minigame_tscn = ExtResource("8_2mwbd")
 
 [node name="TemperatureSystem" parent="RotationalAxis/Systems" instance=ExtResource("4_1apss")]
 position = Vector2(802, 549)
-power_max = 455.0
+power_max = 546.0
 power_minigame_tscn = ExtResource("11_7x2n5")
 
 [node name="LightsSystem" parent="RotationalAxis/Systems" instance=ExtResource("5_1epu1")]
 position = Vector2(824, 391)
-power_max = 170.0
+power_max = 210.0
 power_minigame_tscn = ExtResource("8_35r3r")
 
 [node name="AutoPilotSystem" parent="RotationalAxis/Systems" instance=ExtResource("7_pf2w2")]
 position = Vector2(972, 272)
-power_max = 260.0
+power_max = 312.0
 power_minigame_tscn = ExtResource("12_vqvw2")
 
 [node name="EngineSystem" parent="RotationalAxis/Systems" instance=ExtResource("9_orkrm")]
-position = Vector2(126, 406)
-power_max = 170.0
+position = Vector2(188, 405)
+power_max = 300.0
 power_minigame_tscn = ExtResource("17_ep8r2")
+
+[node name="GunRack" parent="RotationalAxis/Systems" instance=ExtResource("19_jrlcq")]
+position = Vector2(520, 101)
+power_max = 0.0
+power_loss_rate = 0.0
 
 [node name="Floors" type="Area2D" parent="RotationalAxis" groups=["Floor"]]
 
@@ -342,6 +389,13 @@ slippery_accel_stationary = 2.0
 wait_time = 10.0
 one_shot = true
 
+[node name="AlienTimer" type="Timer" parent="."]
+wait_time = 8.0
+one_shot = true
+
+[node name="SFXIce" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("21_ppceu")
+
 [connection signal="gravity_down" from="RotationalAxis/Systems/GravitySystem" to="Player" method="_on_gravity_system_gravity_down"]
 [connection signal="gravity_powered" from="RotationalAxis/Systems/GravitySystem" to="Player" method="_on_gravity_system_gravity_powered"]
 [connection signal="temperature_down" from="RotationalAxis/Systems/TemperatureSystem" to="." method="_on_temperature_system_temperature_down"]
@@ -354,3 +408,4 @@ one_shot = true
 [connection signal="auto_pilot_powered" from="RotationalAxis/Systems/AutoPilotSystem" to="." method="_on_auto_pilot_system_auto_pilot_powered"]
 [connection signal="ship_angle_correction_timeout" from="RotationalAxis/Systems/AutoPilotSystem" to="." method="_on_auto_pilot_system_ship_angle_correction_timeout"]
 [connection signal="timeout" from="IceTimer" to="." method="_on_ice_timer_timeout"]
+[connection signal="timeout" from="AlienTimer" to="." method="_on_alien_timer_timeout"]

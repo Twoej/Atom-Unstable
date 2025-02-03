@@ -1,9 +1,39 @@
-[gd_scene load_steps=12 format=3 uid="uid://coagv5heiiek5"]
+[gd_scene load_steps=17 format=3 uid="uid://coagv5heiiek5"]
 
 [ext_resource type="Script" path="res://Scenes/Systems/temperature_system.gd" id="1_htx4t"]
 [ext_resource type="Texture2D" uid="uid://bia44hkhf0ly" path="res://Sprites/Temperature.png" id="2_8ung0"]
+[ext_resource type="Texture2D" uid="uid://gg7nolcsc5ib" path="res://Sprites/TemperatureElectricity.png" id="2_e1o7t"]
 [ext_resource type="Texture2D" uid="uid://8ipeqn0roniu" path="res://Sprites/Battery.png" id="3_gu72n"]
 [ext_resource type="Texture2D" uid="uid://8poe0gj6ve34" path="res://Sprites/WarningSymbol.png" id="4_7oe1i"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wxqvr"]
+atlas = ExtResource("2_e1o7t")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nyitu"]
+atlas = ExtResource("2_e1o7t")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_egdke"]
+atlas = ExtResource("2_e1o7t")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g3wss"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wxqvr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nyitu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_egdke")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sob8v"]
 atlas = ExtResource("2_8ung0")
@@ -87,17 +117,18 @@ size = Vector2(94, 50)
 [node name="TemperatureSystem" type="Area2D"]
 script = ExtResource("1_htx4t")
 
+[node name="ShockSprite" type="AnimatedSprite2D" parent="."]
+visible = false
+texture_filter = 1
+position = Vector2(1, -7)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_g3wss")
+
 [node name="SystemSprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 position = Vector2(1, -7)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_upxy6")
-
-[node name="PowerRemaining" type="Label" parent="."]
-offset_left = -20.0
-offset_top = -57.0
-offset_right = 20.0
-offset_bottom = -34.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_l8ew2")

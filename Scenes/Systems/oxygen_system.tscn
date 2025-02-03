@@ -1,9 +1,39 @@
-[gd_scene load_steps=12 format=3 uid="uid://b7g0nwgl1bn0p"]
+[gd_scene load_steps=17 format=3 uid="uid://b7g0nwgl1bn0p"]
 
 [ext_resource type="Script" path="res://Scenes/Systems/oxygen_system.gd" id="1_2nsjr"]
 [ext_resource type="Texture2D" uid="uid://bhv0osrhhsgfl" path="res://Sprites/Oxygen.png" id="2_aynk2"]
+[ext_resource type="Texture2D" uid="uid://u1t5csduqq7q" path="res://Sprites/OxygenElectricity.png" id="2_n8qt5"]
 [ext_resource type="Texture2D" uid="uid://8ipeqn0roniu" path="res://Sprites/Battery.png" id="3_06486"]
 [ext_resource type="Texture2D" uid="uid://8poe0gj6ve34" path="res://Sprites/WarningSymbol.png" id="4_xkeno"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xfsus"]
+atlas = ExtResource("2_n8qt5")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_41ebb"]
+atlas = ExtResource("2_n8qt5")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_402ik"]
+atlas = ExtResource("2_n8qt5")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x2ucl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xfsus")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_41ebb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_402ik")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a64it"]
 atlas = ExtResource("2_aynk2")
@@ -72,18 +102,18 @@ size = Vector2(54, 98)
 [node name="OxygenSystem" type="Area2D"]
 script = ExtResource("1_2nsjr")
 
+[node name="ShockSprite" type="AnimatedSprite2D" parent="."]
+visible = false
+texture_filter = 1
+position = Vector2(11, -3)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_x2ucl")
+
 [node name="SystemSprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 position = Vector2(11, -3)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_4621c")
-
-[node name="PowerRemaining" type="Label" parent="."]
-offset_left = -18.0
-offset_top = -84.0
-offset_right = 22.0
-offset_bottom = -61.0
-metadata/_edit_use_anchors_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_sh22d")

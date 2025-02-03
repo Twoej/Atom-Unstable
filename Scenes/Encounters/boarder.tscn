@@ -1,0 +1,114 @@
+[gd_scene load_steps=16 format=3 uid="uid://1f670xxyte6h"]
+
+[ext_resource type="Texture2D" uid="uid://xo2dq681y1y8" path="res://Sprites/Boarder.png" id="1_ennmh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cg2e3"]
+atlas = ExtResource("1_ennmh")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fbgtc"]
+atlas = ExtResource("1_ennmh")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ensgl"]
+atlas = ExtResource("1_ennmh")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_we5vu"]
+atlas = ExtResource("1_ennmh")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nlv6a"]
+atlas = ExtResource("1_ennmh")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b3sdq"]
+atlas = ExtResource("1_ennmh")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qtcth"]
+atlas = ExtResource("1_ennmh")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_es4lq"]
+atlas = ExtResource("1_ennmh")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mvvt1"]
+atlas = ExtResource("1_ennmh")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1bh8a"]
+atlas = ExtResource("1_ennmh")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k7o5d"]
+atlas = ExtResource("1_ennmh")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gdexd"]
+atlas = ExtResource("1_ennmh")
+region = Rect2(96, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wacmg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cg2e3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fbgtc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ensgl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_we5vu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nlv6a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b3sdq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qtcth")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_es4lq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mvvt1")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1bh8a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k7o5d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gdexd")
+}],
+"loop": true,
+"name": &"pull_energy",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ntfka"]
+size = Vector2(51, 48)
+
+[node name="Boarder" type="Area2D" groups=["BulletDestroy", "Enemy"]]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_wacmg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(6.5, -2)
+shape = SubResource("RectangleShape2D_ntfka")

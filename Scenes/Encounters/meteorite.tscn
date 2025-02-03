@@ -1,0 +1,122 @@
+[gd_scene load_steps=19 format=3 uid="uid://dutg11rtryej4"]
+
+[ext_resource type="Texture2D" uid="uid://c46kfjc821n7c" path="res://Sprites/SmalleMeteor1.png" id="1_68s0k"]
+[ext_resource type="Texture2D" uid="uid://cwdtvteeiacep" path="res://Sprites/SmallerMeteor2.png" id="2_gv4ef"]
+[ext_resource type="Texture2D" uid="uid://c5n4luj5l5vvn" path="res://Sprites/SmallerMeteor3.png" id="3_ckqnm"]
+[ext_resource type="Texture2D" uid="uid://db8ko3plt5f16" path="res://Sprites/BigMeteor.png" id="4_l7rrq"]
+[ext_resource type="Script" path="res://Scenes/Encounters/meteorite.gd" id="5_k6rq4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n0dj4"]
+atlas = ExtResource("1_68s0k")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1qd3s"]
+atlas = ExtResource("1_68s0k")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1op5y"]
+atlas = ExtResource("1_68s0k")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v4jrc"]
+atlas = ExtResource("2_gv4ef")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hgopx"]
+atlas = ExtResource("2_gv4ef")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_agm13"]
+atlas = ExtResource("2_gv4ef")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8erbi"]
+atlas = ExtResource("3_ckqnm")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_571gf"]
+atlas = ExtResource("3_ckqnm")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rortu"]
+atlas = ExtResource("3_ckqnm")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bthe0"]
+atlas = ExtResource("4_l7rrq")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g7nle"]
+atlas = ExtResource("4_l7rrq")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ejkb2"]
+atlas = ExtResource("4_l7rrq")
+region = Rect2(512, 0, 256, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k3wqu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n0dj4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1qd3s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1op5y")
+}],
+"loop": false,
+"name": &"1",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v4jrc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hgopx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_agm13")
+}],
+"loop": false,
+"name": &"2",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8erbi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_571gf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rortu")
+}],
+"loop": false,
+"name": &"3",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bthe0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g7nle")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ejkb2")
+}],
+"loop": false,
+"name": &"4",
+"speed": 1.0
+}]
+
+[node name="Meteorite" type="AnimatedSprite2D"]
+texture_filter = 1
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_k3wqu")
+animation = &"4"
+speed_scale = 0.7
+script = ExtResource("5_k6rq4")

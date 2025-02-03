@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c8j5ohalp35gu"
+path="res://.godot/imported/eel noise.wav-c0eb9b4a7d6ebc0da932ee54ea933105.sample"
+
+[deps]
+
+source_file="res://Sounds/eel noise.wav"
+dest_files=["res://.godot/imported/eel noise.wav-c0eb9b4a7d6ebc0da932ee54ea933105.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

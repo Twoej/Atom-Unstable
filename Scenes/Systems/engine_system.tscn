@@ -1,8 +1,38 @@
-[gd_scene load_steps=11 format=3 uid="uid://cuwg43v4ac7xq"]
+[gd_scene load_steps=16 format=3 uid="uid://cuwg43v4ac7xq"]
 
 [ext_resource type="Script" path="res://Scenes/Systems/engine_system.gd" id="1_ttw2h"]
+[ext_resource type="Texture2D" uid="uid://dks1a3mnkjq3j" path="res://Sprites/EngineElectricity.png" id="2_opx4t"]
 [ext_resource type="Texture2D" uid="uid://cv8o3wdycyuo" path="res://Sprites/Engine.png" id="2_tgj23"]
 [ext_resource type="Texture2D" uid="uid://8ipeqn0roniu" path="res://Sprites/Battery.png" id="3_fm37o"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e4uh5"]
+atlas = ExtResource("2_opx4t")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fp5in"]
+atlas = ExtResource("2_opx4t")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_07isl"]
+atlas = ExtResource("2_opx4t")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mtjow"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e4uh5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fp5in")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_07isl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o4qcv"]
 atlas = ExtResource("2_tgj23")
@@ -80,17 +110,18 @@ size = Vector2(80, 52)
 [node name="EngineSystem" type="Area2D"]
 script = ExtResource("1_ttw2h")
 
+[node name="ShockSprite" type="AnimatedSprite2D" parent="."]
+visible = false
+texture_filter = 1
+position = Vector2(0, -4)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_mtjow")
+
 [node name="SystemSprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 position = Vector2(0, -4)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_fja4m")
-
-[node name="PowerRemaining" type="Label" parent="."]
-offset_left = -20.0
-offset_top = -58.0
-offset_right = 20.0
-offset_bottom = -35.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_8vjqh")
