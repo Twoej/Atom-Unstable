@@ -5,6 +5,7 @@ Adam Unstable is a 2d-sidescroller arcade game with an emphasis on physics and m
 ## Contents
 
 -[Reviews and Download](#reviews-and-download)<br/>
+-[How to Play](#how-to-play)<br/>
 -[Screenshots](#screenshots)<br/>
 -[Credits](#credits)
 
@@ -13,6 +14,18 @@ Adam Unstable is a 2d-sidescroller arcade game with an emphasis on physics and m
 The reviews and ratings can be read on the game's itch.io submission page. It can also be downloaded from the same page.<br/>
 https://itch.io/jam/bigmode-game-jam-2025/rate/3298452<br/><br/>
 Note: For anyone running on a lower-end machine there is currently a bug that will cause the game to get stuck sometimes and force you to lose when playing at a lower framerate. This will get fixed soon.
+
+## How to Play
+
+The power systems on your spaceship have been compromised! In order to survive you must turn the systems back on as they go out.<br/><br/>
+The bottom left has the gravity control system - losing power means moving around slowly in antigravity.<br/>
+Above this is the engine - losing power means that the ship is no longer moving forward (see the progress bar at the top).<br/>
+Above this is the oxygen system - Losing power means imminent death from suffocation!<br/>
+On the right side at the bottom is the temperature system - losing power means imminent death from freezing. Additionally, it means the floors will freeze making them slippery!<br/>
+Above this is the lights system - losing power means the ship goes dark. This is the lowest capacity power system, so it will go out first!<br/>
+Finally, above this is the navigation system - losing power means the ship direction will become unstable causing you to slide around.<br/><br/>
+Keep an eye out for other obstacles like the eel and alien! Especially look out for the alien boarder in their ship in the top right. If they board you can use the gun in the middle of the ship on the top floor to deal with them.<br/><br/>
+Good Luck!
 
 ## Screenshots
 ![ScreenShot1](https://github.com/user-attachments/assets/9089f9db-c1f2-44d8-afb0-136e6958610d)
